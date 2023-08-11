@@ -44,6 +44,7 @@ function List() {
         <div>
           {assets.map((asset) => (
             <Assets
+              key={asset.asset_id}
               asset_id={asset.asset_id}
               name={asset.name}
               image_url={asset.image_url}
