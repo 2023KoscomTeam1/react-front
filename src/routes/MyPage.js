@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import EPortfolio from "../components/enterprise/Portfolio";
+import IPortfolio from "../components/individual/Portfolio";
 
+// TODO: 유저 타입에 따라 다르게 마이 페이지 보여줘야 함
 function MyPage() {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
@@ -28,7 +31,19 @@ function MyPage() {
   return (
     <div>
       <h1>Here goes my page</h1>
-      {loading ? <h1>Loading</h1> : <div>{users.user_id}</div>}
+      {loading ? (
+        <h1>Loading</h1>
+      ) : users.user_type == 0 ? (
+        <div>
+          this user is enterprise
+          <EPortfolio user_type={users.user_type} />
+        </div>
+      ) : (
+        <div>
+          this user is individual
+          <IPortfolio user_type={users.user_type} />
+        </div>
+      )}
     </div>
   );
 }
