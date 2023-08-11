@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Assets({
   asset_id,
   name,
@@ -12,7 +14,7 @@ function Assets({
       <br />
       <img src={image_url} alt={name} />
       <div>{asset_id}</div>
-      <div>{name}</div>
+      <Link to={`/asset/${asset_id}`}>{name}</Link>
       <div>{address}</div>
       <div>{whole_price}</div>
       <div>{unit_current_price}</div>

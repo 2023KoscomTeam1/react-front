@@ -28,7 +28,6 @@ function List() {
       },
     ];
     setAssets(json);
-    console.log("this is assets", assets);
     setLoading(false);
   };
   useEffect(() => {
@@ -42,6 +41,7 @@ function List() {
         <h1>Loading</h1>
       ) : (
         <div>
+          <h3>전체 매물 | 인기 매물 | 나의 지역 | 공모 중</h3>
           {assets.map((asset) => (
             <Assets
               key={asset.asset_id}
