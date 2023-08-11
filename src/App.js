@@ -3,6 +3,7 @@ import Home from "./routes/Home";
 import Login from "./routes/Login";
 import List from "./routes/List";
 import MyPage from "./routes/MyPage";
+import Detail from "./routes/Detail";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/assets" element={<List />} />
+        <Route path="/assets/detail/:id" element={<Detail />} />
         <Route path="/user/:id" element={<MyPage />} />
       </Routes>
     </Router>
