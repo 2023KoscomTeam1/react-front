@@ -1,24 +1,24 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../App.css";
+import "./Nav.css";
 import ColorButton from "./Button";
 
 const Nav = () => {
   return (
     <nav>
-      <div>
-        <NavLink to="/">Home</NavLink>
+      <div></div>
+      <div className="menu">
+        <NavLink to="/">
+          <img
+            src="/img/representative_image.jpg"
+            alt="Logo"
+            className="logo-image"
+          />
+        </NavLink>
       </div>
-      <div>
-        <NavLink to="/recommend">Recommend</NavLink>
+      <div className="login-button">
+        <ColorButton text={"login"} />
       </div>
-      <div>
-        <NavLink to="/search">Search</NavLink>
-      </div>
-      <div>
-        <NavLink to="/mypage">MyPage</NavLink>
-      </div>
-      <ColorButton text={"login"} size={10} />
     </nav>
   );
 };
