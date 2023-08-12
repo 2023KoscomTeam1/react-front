@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EPortfolio from "../components/enterprise/Portfolio";
 import IPortfolio from "../components/individual/Portfolio";
+import Nav from "../components/Nav";
 
 // TODO: 유저 타입에 따라 다르게 마이 페이지 보여줘야 함
 function MyPage() {
@@ -17,7 +18,7 @@ function MyPage() {
       user_place: "충청도",
       user_assets: { asset_id: "1", count: 1, average_price: 13.4 },
       balance: 432153,
-      user_type: 1,
+      user_type: "PERSONAL",
     };
     console.log(json);
     setUsers(json);
@@ -31,10 +32,11 @@ function MyPage() {
 
   return (
     <div>
+      <Nav/>
       <h1>Here goes my page</h1>
       {loading ? (
         <h1>Loading</h1>
-      ) : users.user_type == 0 ? (
+      ) : users.user_type == 'ENTERPRISE' ? (
         <div>
           this user is enterprise
           <EPortfolio user_type={users.user_type} />
@@ -42,7 +44,7 @@ function MyPage() {
       ) : (
         <div>
           this user is individual
-          <IPortfolio user_type={users} />
+          <IPortfolio user={users} />
         </div>
       )}
     </div>
