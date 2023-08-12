@@ -1,3 +1,8 @@
+:root { /* CSS 전역 변수 선언 */
+  /* 변수명은 앞에 --를 붙이고, 사용시에는 var(--변수명) 형식으로 사용한다.*/
+  --koscom-color : #E37622;
+}
+
 .App {
   text-align: center;
 }
@@ -27,6 +32,19 @@
 .App-link {
   color: #61dafb;
 }
+
+/* 전체 프레임*/
+.default-frame {
+  min-width: 300px;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+/* Asset 용*/
+.Asset-box {
+  height: 300px;
+  border: var(--koscom-color);
+}
+
 
 @keyframes App-logo-spin {
   from {
