@@ -17,7 +17,7 @@ function MyPage() {
       user_place: "충청도",
       user_assets: { asset_id: "1", count: 1, average_price: 13.4 },
       balance: 432153,
-      user_type: 0,
+      user_type: 1,
     };
     console.log(json);
     setUsers(json);
@@ -42,7 +42,7 @@ function MyPage() {
       ) : (
         <div>
           this user is individual
-          <IPortfolio user_type={users.user_type} />
+          <IPortfolio user_type={users} />
         </div>
       )}
     </div>
