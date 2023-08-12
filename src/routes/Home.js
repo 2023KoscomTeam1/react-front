@@ -10,7 +10,7 @@ function Home() {
 
       {/* 우측 상단에 마이페이지 버튼과 로그인 버튼 */}
       <div className="right-menu">
-        <Link to="/company/EPortfolio">
+        <Link to="/company/portfolio">
           <ColorButton text={"마이페이지"} size={10} />
         </Link>
         <Link to="/login">
