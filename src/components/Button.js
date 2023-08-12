@@ -1,10 +1,10 @@
 import { Button, styled } from "@mui/material";
 
-function ColorButton({ text }) {
+function ColorButton({ text, size }) {
   const ColorButton = styled(Button)({
     boxShadow: "none",
     textTransform: "none",
-    fontSize: 10,
+    fontSize: size,
     padding: "5px 8px",
     lineHeight: 1.5,
     backgroundColor: "#E37622",

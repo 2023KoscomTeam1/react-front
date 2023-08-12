@@ -18,7 +18,7 @@ const Nav = () => {
       <div>
         <NavLink to="/mypage">MyPage</NavLink>
       </div>
-      <ColorButton text={"login"} />
+      <ColorButton text={"login"} size={10} />
     </nav>
   );
 };
