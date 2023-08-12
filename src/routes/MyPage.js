@@ -12,10 +12,11 @@ function MyPage() {
     // 아래의 데이터는 id에 맞는 데이터 fetch했다는 가정 하의 데이터임
     const json = {
       user_id: id,
+      name: "홍길동",
       password: "1",
       user_place: "충청도",
       user_assets: { asset_id: "1", count: 1, average_price: 13.4 },
-      balance: 432.153,
+      balance: 432153,
       user_type: 0,
     };
     console.log(json);
