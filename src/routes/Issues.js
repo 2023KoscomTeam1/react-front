@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Topic from "../components/Topic";
+import Nav from "../components/Nav";
 
 function Issues() {
   const [loading, setLoading] = useState(true);
@@ -34,11 +35,11 @@ function Issues() {
 
   return (
     <div>
-      <h1>Here goes my page</h1>
       {loading ? (
         <h1>Loading</h1>
       ) : (
         <div>
+          <Nav />
           <h3>issue</h3>
           {issues.map((issue) => (
             <Topic
