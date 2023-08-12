@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import "./Home.css"
+import "./Home.css";
+import ColorButton from "../components/Button";
 function Home() {
   return (
     <div className="company-container">
@@ -9,12 +10,12 @@ function Home() {
 
       {/* 우측 상단에 마이페이지 버튼과 로그인 버튼 */}
       <div className="right-menu">
-        <div className="menu-item">
-          <Link to="/company/EPortfolio">마이페이지</Link>
-        </div>
-        <div className="menu-item">
-          <Link to="/login">로그인</Link>
-        </div>
+        <Link to="/company/EPortfolio">
+          <ColorButton text={"마이페이지"} size={10} />
+        </Link>
+        <Link to="/login">
+          <ColorButton text={"로그인"} size={10} />
+        </Link>
       </div>
 
       {/* 배너 컨테이너 */}
@@ -31,9 +32,10 @@ function Home() {
 
       {/* "내 자산 등록하기" 버튼 */}
       <div className="register-button">
-        <Link to="/company/EPortfolio">내 자산 등록하기</Link>
+        <Link to="/company/EPortfolio">
+          <ColorButton text={"내 자산 등록하기"} size={25} />
+        </Link>
       </div>
-
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Login from "./routes/Login";
 import List from "./routes/List";
 import MyPage from "./routes/MyPage";
 import Detail from "./routes/Detail";
+import Issues from "./routes/Issues";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/assets" element={<List />} />
         <Route path="/assets/detail/:id" element={<Detail />} />
         <Route path="/user/:id" element={<MyPage />} />
+        <Route path="/issues" element={<Issues />} />
       </Routes>
     </Router>
   );

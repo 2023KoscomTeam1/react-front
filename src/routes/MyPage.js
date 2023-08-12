@@ -32,11 +32,11 @@ function MyPage() {
 
   return (
     <div>
-      <Nav/>
+      <Nav />
       <h1>Here goes my page</h1>
       {loading ? (
         <h1>Loading</h1>
-      ) : users.user_type == 'ENTERPRISE' ? (
+      ) : users.user_type == "ENTERPRISE" ? (
         <div>
           this user is enterprise
           <EPortfolio user_type={users.user_type} />
