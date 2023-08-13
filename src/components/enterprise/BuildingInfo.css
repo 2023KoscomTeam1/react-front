@@ -1,0 +1,12 @@
+.sad {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.value{
+    display: flex;
+    position: relative;
+    font-size: 14px;
+}
