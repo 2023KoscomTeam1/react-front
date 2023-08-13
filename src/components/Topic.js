@@ -2,7 +2,7 @@ function Topic({ issue_id, topic_name, image_url }) {
   return (
     <div>
       <br />
-      <img src={image_url} alt={topic_name} />
+      <img src={image_url} alt={topic_name} height={70} />
       <div>{issue_id}</div>
       <div>{topic_name}</div>
     </div>

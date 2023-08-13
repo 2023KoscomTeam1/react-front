@@ -39,8 +39,7 @@ function Login() {
     const res = await fetch("/api/login", {
       method: "POST",
       body: formData,
-    })
-    .catch(err => console.log(err));
+    }).catch((err) => console.log(err));
     console.log("this is res", res.ok);
   };
 
@@ -50,28 +49,29 @@ function Login() {
       <div className="default-frame">
         <form className="login" onSubmit={submitHandler}>
           <div className="gray-center-title">
-          <label>로그인</label>
+            <label>로그인</label>
           </div>
           <p className="small-title">아이디</p>
-          <input className="text-input"
+          <input
+            className="text-input"
             onChange={idHandler}
             placeholder="아이디를 입력해 주세요."
           />
           <p className="small-title">비밀번호</p>
-          <input className="text-input"
+          <input
+            className="text-input"
             onChange={pwdHandler}
             placeholder="비밀번호를 입력해 주세요."
           />
           <br />
-          <br/>
+          <br />
           <ColorButton text={"로그인"} size={17} w={320} t={"submit"} />
 
-          <div className="one-line"> 
-            <p className="gray-small-text"> 비밀번호 찾기 </p> 
-            <p className="gray-small-text">|</p> 
-            <p className="gray-small-text">회원가입</p> 
+          <div className="one-line">
+            <p className="gray-small-text"> 비밀번호 찾기 </p>
+            <p className="gray-small-text">|</p>
+            <p className="gray-small-text">회원가입</p>
           </div>
-          
         </form>
       </div>
     </div>

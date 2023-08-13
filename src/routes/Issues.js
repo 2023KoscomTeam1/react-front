@@ -1,33 +1,34 @@
 import { useEffect, useState } from "react";
 import Topic from "../components/Topic";
 import Nav from "../components/Nav";
+import axios from "axios";
 
 function Issues() {
   const [loading, setLoading] = useState(true);
   const [issues, setIssues] = useState({});
   const getIssues = async () => {
-    // 아래의 데이터는 asset_id에 맞는 시세 데이터(차트, 호가, 거래정보), 잔고 데이터 fetch했다는 가정 하의 데이터임
-    const json = [
-      {
-        issue_id: 1,
-        topic_name: "issue1",
-        image_url: "issuelink_1",
-      },
-      {
-        issue_id: 2,
-        topic_name: "issue2",
-        image_url: "issuelink_2",
-      },
-      {
-        issue_id: 3,
-        topic_name: "issue3",
-        image_url: "issuelink_3",
-      },
-    ];
-    console.log(json);
-    setIssues(json);
-    console.log(issues);
-    setLoading(false);
+    try {
+      const data = await axios.get("http://localhost:8080/hot_issue/list");
+      const json = sort(data);
+      setIssues(json);
+      setLoading(false);
+    } catch (e) {}
+  };
+
+  const sort = (d) => {
+    const data = d.data.issues;
+    let type = new Object();
+    data.map((d) => {
+      if (!Object.keys(type).includes(d.topicName)) {
+        type[d.topicName] = [];
+      }
+    });
+
+    data.map((d) => {
+      type[d.topicName].push(d.imageUrl);
+    });
+
+    return type;
   };
   useEffect(() => {
     getIssues();
@@ -41,12 +42,13 @@ function Issues() {
         <div>
           <Nav />
           <h3>issue</h3>
-          {issues.map((issue) => (
-            <Topic
-              key={issue.issue_id}
-              topic_name={issue.topic_name}
-              image_url={issue.image_url}
-            />
+          {Object.entries(issues).map(([key, value]) => (
+            <div key={value}>
+              <div>{key}</div>
+              {value.map((v) => (
+                <img src={v} alt={key} height={70} key={v} />
+              ))}
+            </div>
           ))}
         </div>
       )}
