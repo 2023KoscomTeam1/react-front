@@ -1,24 +1,23 @@
-:root {
-  /* CSS 전역 변수 선언 */
+:root { /* CSS 전역 변수 선언 */
   /* 변수명은 앞에 --를 붙이고, 사용시에는 var(--변수명) 형식으로 사용한다.*/
-  --koscom-color: #e37622;
-  --gray-color: #72787f;
+  --koscom-color : #E37622;
+  --gray-color: #72787F;
 }
 
 /*font*/
 @font-face {
   font-family: "contentFont";
-  src: url("./fonts/Gowun_Dodum/GowunDodum-Regular.ttf");
+  src: url('./fonts/Gowun_Dodum/GowunDodum-Regular.ttf');
 }
 
 @font-face {
   font-family: "titleFont";
-  src: url("./fonts/NanumSquareNeo/NanumSquareNeo-Variable.ttf");
+  src: url('./fonts/NanumSquareNeo/NanumSquareNeo-Variable.ttf');
 }
 
 @font-face {
   font-family: "cuteFont";
-  src: url("./fonts/Jua/Jua-Regular.ttf");
+  src: url('./fonts/Jua/Jua-Regular.ttf');
 }
 
 .App {
@@ -97,15 +96,11 @@ colorhr > hr {
   color: var(--koscom-color);
 }
 
-/* Navigation Bar */
-nav {
-  position: relative;
-  width: 98%;
-  height: 70px;
-  margin-bottom: auto;
-  display: flex;
-  border-bottom: solid 1px;
-  border-color: var(--koscom-color);
+/* Login 페이지*/
+.login {
+  background-color: blue;
+  display: grid;
+  justify-content: center;
 }
 
 @keyframes App-logo-spin {
@@ -117,9 +112,3 @@ nav {
   }
 }
 
-/* Login 페이지*/
-.login {
-  background-color: blue;
-  display: grid;
-  justify-content: center;
-}

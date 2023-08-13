@@ -1,8 +1,32 @@
+/* Navigation Bar */
+nav {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  position: relative;
+  width: 98%;
+  height: 40px;
+  margin: auto;
+  display: flex;
+  border-bottom: solid 1px;
+  border-color: var(--koscom-color);
+}
+
+.nav-item {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 /* portfolio.css */
 .logo-image {
+  justify-self: start;
+  margin-left: 20px;
+  margin-top: -15px;
+  cursor: pointer;
   display: flex;
-  width: 10%;
-  margin-top: 10px;
+  height: 30px;
+  width: auto;
+  display: flex;
 }
 
 .menu {
@@ -16,5 +40,6 @@
 .login-button {
   display: flex;
   margin: auto;
-  padding-left: 50px;
+  padding-left: 10px;
+  padding-right: 5px;
 }
