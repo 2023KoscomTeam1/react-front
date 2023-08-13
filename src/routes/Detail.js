@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import axios from "axios";
+import Nav from "../components/Nav";
 function Detail({
   asset_id,
   name,
@@ -12,33 +13,27 @@ function Detail({
 }) {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
-  const [prices, setPrices] = useState({});
-  const getPrices = async () => {
-    // 아래의 데이터는 asset_id에 맞는 시세 데이터(차트, 호가, 거래정보), 잔고 데이터 fetch했다는 가정 하의 데이터임
-    const prices = [
-      {
-        10000: 10,
-      },
-      { 10500: 20 },
-      { 9500: 20 },
-      { 9000: 30 },
-    ];
-    console.log(prices);
-    setPrices(prices);
-    console.log(id);
+  const [assets, setAssets] = useState({});
+  const getAssets = async () => {
+    const data = await axios.get(`http://localhost:8080/assets/${id}`);
+    setAssets(data.data.asset);
     setLoading(false);
   };
   useEffect(() => {
-    getPrices();
+    getAssets();
+    console.log(assets);
   }, []);
 
   return (
     <div>
+      <Nav />
+
       <h1>Here goes my page</h1>
       {loading ? (
         <h1>Loading</h1>
       ) : (
-        <div>
+        <div className="default-frame">
+          <img src={assets.imageUrl} alt="assetId" className="home-image" />
           <h3>차트</h3>
           <h3>호가</h3>
           <h3>거래 정보</h3>
