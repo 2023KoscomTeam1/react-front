@@ -113,3 +113,10 @@ nav {
     transform: rotate(360deg);
   }
 }
+
+/* Login 페이지*/
+.login {
+  background-color: blue;
+  display: grid;
+  justify-content: center;
+}
