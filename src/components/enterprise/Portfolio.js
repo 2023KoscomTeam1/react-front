@@ -17,8 +17,7 @@ function EPortfolio() {
       <div className="right-content">
         <ButtonGroup aria-label="outlined primary button group">
           <Button onClick={() => handleButtonClick("check")} size="sm">자산확인</Button>
-          <Button onClick={() => handleButtonClick("apply")}>심사신청</Button>
-          <Button>심사확인</Button>
+          <Button onClick={() => handleButtonClick("apply")}>심사확인</Button>
           <Button>투자진행</Button>
           <Button>투자완료</Button>
         </ButtonGroup>

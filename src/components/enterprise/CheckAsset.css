@@ -1,0 +1,22 @@
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+p {
+    font-size: 14px;
+}
+
+.simple-info {
+    display: flex;
+    font-size: 15px;
+}
+
+.simple-info p {
+    margin: 0;
+    /* Remove default margin to prevent extra spacing */
+    white-space: pre-line;
+    /* Preserve line breaks */
+    text-align: left;
+    /* Left align the text */
+}
