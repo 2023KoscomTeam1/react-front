@@ -1,0 +1,54 @@
+/* Navigation Bar */
+nav {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  position: relative;
+  width: 98%;
+  height: 40px;
+  margin: auto;
+  display: flex;
+  border-bottom: solid 1px;
+  border-color: var(--koscom-color);
+}
+
+.nav-item {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* portfolio.css */
+.logo-image {
+  justify-self: start;
+  margin-left: 20px;
+  margin-top: -15px;
+  cursor: pointer;
+  display: flex;
+  height: 30px;
+  width: auto;
+  display: flex;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 2;
+  margin-top: 12px;
+}
+
+.login-module {
+  display: flex;
+  width: 25%;
+  margin-left: auto;
+  align-items: center;
+}
+.login-button {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+}
+
+.nav-module {
+  margin-right: 15px;
+}

@@ -33,6 +33,7 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+  margin-top: 400px;
   height: 50vh; /* 화면의 절반 높이만큼 설정 */
 }
 
@@ -61,7 +62,7 @@
 .register-button {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 /* 추가적인 스타일링 작업을 수행할 수 있습니다 */

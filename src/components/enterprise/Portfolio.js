@@ -1,29 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import "./Portfolio.css";
-import Sidebar  from "../Sidebar";
+import { Button, ButtonGroup, IconButton } from '@mui/joy';
+import ApplyAudit from "./apply";
+import CheckAsset from "./CheckAsset";
+
 function EPortfolio() {
+  const [activeScreen, setActiveScreen] = useState(null); // 현재 활성화된 화면을 상태로 관리
+
+  const handleButtonClick = (screen) => {
+    setActiveScreen(screen); // 버튼 클릭에 따라 화면 변경
+  };
+
   return (
-    <div className="eportfolio-container">
-      <Sidebar>ddd</Sidebar>
-      
+    <div className="default-frame">
+
       <div className="right-content">
-        <div className="image-description">
-          <h3>대표 이미지</h3>
-          <p>이미지에 대한 자세한 설명을 여기에 추가합니다.</p>
-        </div>
-        <img
-          src="/img/cafe1.jpg"
-          alt="Representative"
-          className="representative-image"
-        />
-        <div className="basic-info">
-          <p>자산명: 더에스에스타운</p>
-          <p>주소: 서울특별시 강서구 강서로 33가길 4</p>
-          <p>유형: 상가</p>
-        </div>
+        <ButtonGroup aria-label="outlined primary button group">
+          <Button onClick={() => handleButtonClick("check")} size="sm">자산확인</Button>
+          <Button onClick={() => handleButtonClick("apply")}>심사신청</Button>
+          <Button>심사확인</Button>
+          <Button>투자진행</Button>
+          <Button>투자완료</Button>
+        </ButtonGroup>
+        
+        {(activeScreen === "check" || activeScreen === null ) && <CheckAsset />} {/* 초기 자산확인 화면 */}
+        {activeScreen === "apply" && <ApplyAudit />} {/* 자산확인 화면 */}
+        {/* 심사신청, 심사확인, 투자진행, 투자완료 화면도 유사하게 추가 */}
+
       </div>
     </div>
+
   );
 }
 
