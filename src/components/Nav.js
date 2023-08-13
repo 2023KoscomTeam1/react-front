@@ -17,7 +17,9 @@ const Nav = () => {
         </NavLink>
       </div>
       <div className="login-button">
-        <ColorButton text={"login"} />
+        <NavLink to="/login">
+          <ColorButton text={"login"} />
+        </NavLink>
       </div>
     </nav>
   );
