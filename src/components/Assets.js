@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Assets({
   asset_id,
   name,
-  image_url,
+  image_url = "https://drive.google.com/uc?id=1E_tfnKmcwQZQTVAC6uTAA5aN3dx3AeZG",
   address,
   whole_price,
   unit_current_price,

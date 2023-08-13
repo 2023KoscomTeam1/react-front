@@ -103,6 +103,11 @@ colorhr > hr {
   justify-content: center;
 }
 
+/* Asset */
+.asset-preview {
+  size: 60px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
