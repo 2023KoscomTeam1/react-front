@@ -37,12 +37,11 @@ function Login() {
     formData.append("loginId", id);
     formData.append("password", pwd);
 
-    const res = await fetch("http://localhost:8080/api/login", {
+    const res = await fetch("/api/login", {
       method: "POST",
       body: formData,
-      mode: "no-cors",
     });
-    console.log("this is res", res.ok);
+    console.log("this is res", res);
   };
 
   return (
