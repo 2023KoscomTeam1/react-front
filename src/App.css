@@ -61,8 +61,21 @@
 
 /* Asset 용*/
 .asset-box {
-  height: 300px;
+  height: 60px;
   border: var(--koscom-color);
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.asset-preview {
+  /* Asset Preview Image */
+  width: 50px;
+  margin-left: 10px;
+}
+
+.inblock-item {
+  margin-left: 10px;
 }
 
 .color-title {
@@ -90,6 +103,16 @@
   display: grid;
   grid-template-columns: 30% 70%;
   font-size: 3px;
+}
+
+.key-label {
+  text-align: left;
+}
+
+.value-label {
+  text-align: right;
+  font-weight: bold;
+  font-size: 0.6rem;
 }
 
 colorhr > hr {
