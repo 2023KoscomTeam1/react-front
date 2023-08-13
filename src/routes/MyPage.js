@@ -4,6 +4,7 @@ import "../App.css";
 import EPortfolio from "../components/enterprise/Portfolio";
 import IPortfolio from "../components/individual/Portfolio";
 import Nav from "../components/Nav";
+import axios from "axios";
 
 // TODO: 유저 타입에 따라 다르게 마이 페이지 보여줘야 함
 function MyPage() {
@@ -29,23 +30,14 @@ function MyPage() {
     setLoading(false);
   };
 
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
-  useEffect(()=> {
-    const requestOptions = {
-      method: 'GET',
-      mode: "no-cors",
-    };
-  
-    fetch("http://localhost:8080/user/${userId}", requestOptions)
-    .then(response => response.json())
-    .then(result => setUsers(result))
-    .then(res => console.log("test", res))
-    .then(() => console.log("test", users))
-    .catch(error => console.log('error'. error))
-    .then(setLoading(false))
-  }, [])
+  const jsonFetcher = async () => {
+    const res = await axios.get(`http://localhost:8080/user/${id}`);
+    console.log(res);
+  };
+  useEffect(() => {
+    jsonFetcher();
+  }, []);
+
   return (
     <div>
       <Nav />
