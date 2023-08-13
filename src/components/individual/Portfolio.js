@@ -15,7 +15,7 @@ customElements.define('custom-input', newClass)
 function IPortfolio({ user }) {
   return (
     <div>
-        <h2 className="color-title"> {user.name} 님의 보유자산 </h2>
+        <h2 className="color-title"> {user.user_name} 님의 보유자산 </h2>
         <div className="content-font">
           <p>주문가: {user.balance} 원</p>
           <hr/>

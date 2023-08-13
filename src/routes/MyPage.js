@@ -38,9 +38,11 @@ function MyPage() {
       mode: "no-cors",
     };
   
-    fetch("http://localhost:8080/user/${userId}")
+    fetch("http://localhost:8080/user/${userId}", requestOptions)
     .then(response => response.json())
     .then(result => setUsers(result))
+    .then(res => console.log("test", res))
+    .then(() => console.log("test", users))
     .catch(error => console.log('error'. error))
     .then(setLoading(false))
   }, [])

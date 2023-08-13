@@ -65,6 +65,11 @@
   border: var(--koscom-color);
 }
 
+.asset-preview {
+  /* Asset Preview Image */
+  size: 60px;
+}
+
 .color-title {
   font-family: "titleFont";
   color: var(--koscom-color);
@@ -101,11 +106,6 @@ colorhr > hr {
   background-color: blue;
   display: grid;
   justify-content: center;
-}
-
-/* Asset */
-.asset-preview {
-  size: 60px;
 }
 
 @keyframes App-logo-spin {
