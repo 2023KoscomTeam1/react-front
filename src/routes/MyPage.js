@@ -20,7 +20,7 @@ function MyPage() {
       balance: 432153,
       user_type: "PERSONAL",
     };
-    console.log(json);
+
     setUsers(json);
     console.log("this is users", users);
     console.log(id);

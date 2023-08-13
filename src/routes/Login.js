@@ -1,5 +1,6 @@
-import { Chip } from "@mui/material";
+import { Chip, TextField } from "@mui/material";
 import ColorButton from "../components/Button";
+import "../../src/App.css";
 import { useEffect } from "react";
 
 function Login() {
@@ -14,12 +15,14 @@ function Login() {
   }, []);
 
   return (
-    <div>
+    <div className="login">
       <h3>로그인</h3>
-      <h3>이메일</h3>
-      <h3>비밀번호</h3>
-      <ColorButton text={"로그인"} size={20} />
-      <Chip label="Chip Filled" />
+      <h5>이메일</h5>
+      <TextField id="outlined-basic" variant="outlined" size="small" />
+      <h5>비밀번호</h5>
+      <TextField id="outlined-basic" variant="outlined" size="small" />
+      <br />
+      <ColorButton text={"로그인"} size={10} w={200} />
     </div>
   );
 }
