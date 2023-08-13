@@ -37,9 +37,18 @@ nav {
   margin-top: 12px;
 }
 
+.login-module {
+  display: flex;
+  width: 25%;
+  margin-left: auto;
+  align-items: center;
+}
 .login-button {
   display: flex;
-  margin: auto;
-  padding-left: 10px;
-  padding-right: 5px;
+  margin-left: auto;
+  align-items: center;
+}
+
+.nav-module {
+  margin-right: 15px;
 }

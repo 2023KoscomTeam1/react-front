@@ -2,22 +2,11 @@ import { Link } from "react-router-dom";
 import React from "react";
 import "./Home.css";
 import ColorButton from "../components/Button";
+import Nav from "../components/Nav";
 function Home() {
   return (
     <div className="company-container">
-      {/* 좌측 상단에 로고 이미지 */}
-      <img src="/img/logo.png" alt="Company Logo" className="logo-image" />
-
-      {/* 우측 상단에 마이페이지 버튼과 로그인 버튼 */}
-      <div className="right-menu">
-        <Link to="/company/portfolio">
-          <ColorButton text={"마이페이지"} size={10} />
-        </Link>
-        <Link to="/login">
-          <ColorButton text={"로그인"} size={10} />
-        </Link>
-      </div>
-
+      <Nav />
       {/* 배너 컨테이너 */}
       <div className="banner-container">
         <div className="banner-wrapper">
