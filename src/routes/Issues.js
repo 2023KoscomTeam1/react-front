@@ -9,21 +9,34 @@ function Issues() {
     // 아래의 데이터는 asset_id에 맞는 시세 데이터(차트, 호가, 거래정보), 잔고 데이터 fetch했다는 가정 하의 데이터임
     const json = [
       {
-        issue_id: 1,
-        topic_name: "issue1",
-        image_url: "issuelink_1",
+        _id: {
+          $oid: "64d8723cf6c95bc540850a09",
+        },
+        issue_id: "1",
+        topic_name: "신규 부동산 공모",
+        image_url:
+          "https://drive.google.com/uc?id=116tXYq8UugEghvmjihsbmKxLilKEIinf",
       },
       {
-        issue_id: 2,
-        topic_name: "issue2",
-        image_url: "issuelink_2",
+        _id: {
+          $oid: "64d87279f6c95bc540850a0a",
+        },
+        issue_id: "2",
+        topic_name: "신규 부동산 공모",
+        image_url:
+          "https://drive.google.com/uc?id=1WEr4p6-Dm3ve_jallTeLziTYtdAIh60T",
       },
       {
-        issue_id: 3,
-        topic_name: "issue3",
-        image_url: "issuelink_3",
+        _id: {
+          $oid: "64d8735bf6c95bc540850a0b",
+        },
+        issue_id: "3",
+        topic_name: "기존 부동산 공모",
+        image_url:
+          "https://drive.google.com/uc?id=1LpLBeOPFyPIJMDyMJcYUf54AfGnGMDZY",
       },
     ];
+
     console.log(json);
     setIssues(json);
     console.log(issues);
