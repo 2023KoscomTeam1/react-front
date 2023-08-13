@@ -35,6 +35,7 @@ function MyPage() {
   useEffect(()=> {
     const requestOptions = {
       method: 'GET',
+      mode: "no-cors",
     };
   
     fetch("http://localhost:8080/user/${userId}")
