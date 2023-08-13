@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../App.css";
+import Assets from "../Assets";
+import Ipo from "../Ipo";
 
 class newClass extends HTMLElement {
   connectedCallback() {
@@ -24,15 +26,28 @@ function IPortfolio({ user }) {
 
         <h2 className="color-title">부동산</h2>
         <div className="amount-label">
-          <p>총 평가액: </p><p> #총평가액 </p>
-          <p>총 수익: </p> <p> #총 평가액 - 투자원금 </p>
-          <p>투자 원금:</p> <p> #투자원금 </p>
+          <p className="key-label">총 평가액: </p>
+          <p className="value-label"> {user.user_assets.reduce((acc, cur) => {
+              return acc + cur.count * cur.averagePrice;
+          }, 0)} 원
+          </p>
+          <p className="key-label">총 수익: </p> 
+          <p className="value-label"> #총 평가액 - 투자원금 </p>
+          <p className="key-label">투자 원금:</p> 
+          <p className="value-label"> #투자원금 </p>
         </div>
       
         <hr/>
 
         <div className="asset-list">
-          <div> asset 정보 </div>
+          <div> asset정보 </div>
+          {user.user_assets.map((asset) => (
+            <Assets
+              asset_id={asset.asset_id}
+              count={asset.count}
+              averagePrice={asset.averagePrice}
+            />
+          ))}
           <hr/>
         <button className="more-info-button">대기중인 주문</button>
         </div>
@@ -40,7 +55,14 @@ function IPortfolio({ user }) {
         <h2 className="color-title">공모 진행중</h2>
         <div className="ipo-list">
           <div> ipo-item 정보 </div>
+          {/* {user.user_ipos.map((ipo) => (
+            <Ipo
+              ipo_id={ipo.ipo_id}
+              count={ipo.count}
+            />
+          ))} */}
           <hr/>
+          {user.user_place}
         </div>
 
       </div>
