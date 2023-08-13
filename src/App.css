@@ -19,6 +19,10 @@
   font-family: "cuteFont";
   src: url('./fonts/Jua/Jua-Regular.ttf');
 }
+@font-face {
+  font-family: "sharp";
+  src: url('./fonts/Nanum_Myeongjo/NanumMyeongjo-Bold.ttf');
+}
 
 .App {
   text-align: center;
