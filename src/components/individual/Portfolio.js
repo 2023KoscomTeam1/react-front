@@ -14,7 +14,7 @@ customElements.define('custom-input', newClass)
 
 function IPortfolio({ user }) {
   return (
-    <div className="default-frame">
+    <div>
         
         <h2 className="color-title"> {user.name} 님의 보유자산 </h2>
         <div className="content-font">
@@ -35,12 +35,13 @@ function IPortfolio({ user }) {
         <div className="asset-list">
           <div> asset 정보 </div>
           <hr/>
-        <button>대기중인 주문</button>
+        <button className="more-info-button">대기중인 주문</button>
         </div>
 
-        <h2>공모 진행중</h2>
-        <div>
-          <li>ipo asset 정보</li>
+        <h2 className="color-title">공모 진행중</h2>
+        <div className="ipo-list">
+          <div> ipo-item 정보 </div>
+          <hr/>
         </div>
 
       </div>

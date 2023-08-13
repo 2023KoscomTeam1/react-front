@@ -79,9 +79,12 @@
 }
 
 .more-info-button {
-  margin: auto;
+  height: min-content;
   border-color: transparent;
   background-color: transparent;
+  color: var(--gray-color);
+  width: 100%;
+  text-align: center;
 }
 
 .amount-label {
