@@ -1,4 +1,3 @@
-import { TextField } from "@mui/material";
 import ColorButton from "../components/Button";
 import "../../src/App.css";
 import { useEffect, useState } from "react";
@@ -37,36 +36,44 @@ function Login() {
     formData.append("loginId", id);
     formData.append("password", pwd);
 
-    const res = await fetch("http://localhost:8080/api/login", {
+    const res = await fetch("/api/login", {
       method: "POST",
       body: formData,
-      mode: "no-cors",
-    });
+    })
+    .catch(err => console.log(err));
     console.log("this is res", res.ok);
   };
 
   return (
     <div>
       <Nav />
-      <form className="login" onSubmit={submitHandler}>
-        <label>로그인</label>
-        <h5>아이디</h5>
-        <TextField
-          id="outlined-basic"
-          variant="outlined"
-          size="small"
-          onChange={idHandler}
-        />
-        <h5>비밀번호</h5>
-        <TextField
-          id="outlined-basic"
-          variant="outlined"
-          size="small"
-          onChange={pwdHandler}
-        />
-        <br />
-        <ColorButton text={"로그인"} size={10} w={200} t={"submit"} />
-      </form>
+      <div className="default-frame">
+        <form className="login" onSubmit={submitHandler}>
+          <div className="gray-center-title">
+          <label>로그인</label>
+          </div>
+          <p className="small-title">아이디</p>
+          <input className="text-input"
+            onChange={idHandler}
+            placeholder="아이디를 입력해 주세요."
+          />
+          <p className="small-title">비밀번호</p>
+          <input className="text-input"
+            onChange={pwdHandler}
+            placeholder="비밀번호를 입력해 주세요."
+          />
+          <br />
+          <br/>
+          <ColorButton text={"로그인"} size={17} w={320} t={"submit"} />
+
+          <div className="one-line"> 
+            <p> 비밀번호 찾기 </p> 
+            <p>|</p> 
+            <p>회원가입</p> 
+          </div>
+          
+        </form>
+      </div>
     </div>
   );
 }

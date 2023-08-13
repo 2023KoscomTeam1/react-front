@@ -121,10 +121,47 @@ colorhr > hr {
 
 /* Login 페이지*/
 .login {
-  background-color: blue;
-  display: grid;
+  display: block;
   justify-content: center;
 }
+
+.gray-center-title {
+  padding-top: 20px;
+  font-family: "titleFont";
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.text-input {
+  height: 40px;
+  width: 100%;
+  background-color: #f2f3f5;
+  border: transparent;
+  border-radius: 10px;
+  padding-left: 16px;
+  margin-bottom: 15px;
+}
+
+.small-title {
+  margin-bottom: 0;
+  padding-left: 7px;
+  font-size: 0.9rem;
+}
+
+.v-line{
+  border-left: solid #000;
+  margin-top: 30px;
+  height:10px;
+  left: 50%;
+  position: absolute;
+ }
+
+ .one-line {
+  display: flex;
+  justify-content: center;
+
+ }
 
 @keyframes App-logo-spin {
   from {
@@ -134,4 +171,6 @@ colorhr > hr {
     transform: rotate(360deg);
   }
 }
+
+
 
