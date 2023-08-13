@@ -12,6 +12,8 @@ function ColorButton({ text, size, w, t }) {
     color: "white",
     borderColor: "white",
     borderRadius: 8,
+    opacity: 0.8,
+    
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
