@@ -67,9 +67,9 @@ function Login() {
           <ColorButton text={"로그인"} size={17} w={320} t={"submit"} />
 
           <div className="one-line"> 
-            <p> 비밀번호 찾기 </p> 
-            <p>|</p> 
-            <p>회원가입</p> 
+            <p className="gray-small-text"> 비밀번호 찾기 </p> 
+            <p className="gray-small-text">|</p> 
+            <p className="gray-small-text">회원가입</p> 
           </div>
           
         </form>
