@@ -1,0 +1,23 @@
+/* Detail_info.css */
+
+.custom-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  .custom-table th, .custom-table td {
+    border: 1px solid #E37622;
+    text-align: left;
+    padding: 8px;
+    background-color: white;
+  }
+  
+  .custom-table th {
+    background-color: #E37622;
+    color: white;
+  }
+  
