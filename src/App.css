@@ -63,6 +63,15 @@
 
 /* title */
 
+.my-place {
+  margin: 5px;
+  font-family: "contentFont";
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--gray-color);
+  text-align: right;
+}
+
 /* Asset 용*/
 .asset-box {
   height: 60px;
@@ -86,6 +95,7 @@
   font-family: "titleFont";
   color: var(--koscom-color);
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .content-font {
@@ -107,9 +117,10 @@
 }
 
 .amount-label {
-  display: grid;
-  grid-template-columns: 30% 70%;
+  display: flex;
+  height: 30px;
   font-size: 3px;
+  justify-content: space-between;
 }
 
 .progress-label {
@@ -119,13 +130,16 @@
 }
 
 .key-label {
+  font-family: "titleFont";
   text-align: left;
+  ont-size: 0.8rem;
 }
 
 .value-label {
+  font-family: "titleFont";
   text-align: right;
-  font-weight: bold;
-  font-size: 0.6rem;
+  font-weight: 550;
+  font-size: 0.9rem;
 }
 
 .value-label2 {
@@ -197,6 +211,15 @@ colorhr > hr {
 
 
 /*List*/
+
+.asset-list {
+  margin-top: 20px;
+}
+
+.ipo-list {
+  margin-top: 20px;
+}
+
 .custom-box {
   background-color:#F0F0F0;
   width: 95%;
@@ -245,6 +268,9 @@ colorhr > hr {
   width: 30%;
 }
 
+.bottom-empty-space {
+  height: 200px;
+}
 
 @keyframes App-logo-spin {
   from {

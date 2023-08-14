@@ -57,7 +57,7 @@ function MyPage() {
     <div>
       <Nav />
       <div className="default-frame">
-        <h5>My page</h5>
+        {/* <h5>My page</h5> */}
         {loading ? (
           <h1>Loading</h1>
         ) : user.user_type == "COMPANY" ? (

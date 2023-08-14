@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "../../App.css";
-import Ipo from "../Ipo";
+import OwnIPO from "../OwnIPO";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import OwnAsset from "../OwnAsset";
@@ -36,13 +36,14 @@ function IPortfolio({ user }) {
   }, []);
   return (
     <div>
+      <p className="my-place">My 지역: {user.user_place}</p>
         <h2 className="color-title"> {user.user_name} 님의 보유자산 </h2>
         <div className="main-amount">
           <p className="left-label">주문 가능 금액: </p> 
-          <p className="right-label"> {user.balance} 원</p>
-          </div>
+          <p className="right-label"> {(user.balance).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} 원</p>
+        </div>
           {/* <hr/> */}
-          <button className="more-info-button">채우기 or 보내기 </button>
+        <button className="more-info-button">채우기 or 보내기 </button>
         
 
         <h2 className="color-title">부동산</h2>
@@ -52,8 +53,12 @@ function IPortfolio({ user }) {
               return acc + cur.count * cur.averagePrice;
           }, 0)} 원
           </p>
+         </div>
+        <div className="amount-label">
           <p className="key-label">총 수익: </p> 
           <p className="value-label"> #총 평가액 - 투자원금 </p>
+        </div>
+        <div className="amount-label">
           <p className="key-label">투자 원금:</p> 
           <p className="value-label"> #투자원금 </p>
         </div>
@@ -77,16 +82,15 @@ function IPortfolio({ user }) {
         <h2 className="color-title">공모 진행중</h2>
         <div className="ipo-list">
           {user.user_ipos ? <div> {user.user_ipos.map((ipo) => (
-            <Ipo
-              ipo_id={ipo.ipo_id}
+            <OwnIPO
+              ipo_id={ipo.ipoId}
               count={ipo.count}
             />
-          ))} </div> : <div className="gray-small-text"> 새로운 공모를 신청해보세요! </div>}
-          
-          <hr/>
-          {user.user_place}
-        </div>
+          ))} </div> : <div className="gray-small-text"> 새로운 공모를 신청해보세요! </div>}    
 
+          <button className="more-info-button">공모 신청 이력</button>
+        </div>
+      <div className="bottom-empty-space"></div>
       </div>
   );
 }
