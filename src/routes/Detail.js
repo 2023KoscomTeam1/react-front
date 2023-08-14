@@ -8,6 +8,10 @@ import { Container, Grid, Typography } from "@mui/material";
 import "./Home.css";
 import BasicTable from "../components/BasicTable";
 
+function createData(sell, orderPrice, buy) {
+  return { sell: sell ? sell : 0, orderPrice, buy: buy ? buy : 0 };
+}
+
 function Detail({
   asset_id,
   name,
@@ -18,6 +22,7 @@ function Detail({
   end_price,
   user_id,
 }) {
+  const rows = [];
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [fetching, setFetching] = useState(true);
@@ -58,24 +63,17 @@ function Detail({
     setFetching(true);
   }, [buyOrderBook, sellOrderBook]);
 
-  // const getOrder = useCallback(async () => {
-  //   const minNum = Math.min(...Object.keys(buyOrderBook));
-  //   const midNum = Math.max(...Object.keys(buyOrderBook));
-  //   const maxNum = Math.max(...Object.keys(sellOrderBook));
-  //   // for (let i = minNum; i <= maxNum; i += 500) {
-  //   //   console.log(i);
-  //   // }
-  //   // const arr = Array.from(
-  //   //   Array((maxNum - minNum) / 500 + 1),
-  //   //   (_, index) => index * 500 + minNum
-  //   // );
-  //   // setOrderRange(arr);
-  //   // console.log("this is orderrange", orderRange);
-  //   // console.log(midNum);
-  //   const buyOrder = Object.entries(buyOrderBook);
-  //   buyOrder.sort((a, b) => b[0] - a[0]);
-  //   console.log(buyOrder);
-  // });
+  const getFullOrderBook = useCallback(async () => {
+    console.log("buy", buyOrderBook);
+    console.log("sell", sellOrderBook);
+    if (buyOrderBook.length != undefined) {
+      buyOrderBook.map((d) => rows.push(createData(...d)));
+    }
+    if (sellOrderBook.length != undefined) {
+      sellOrderBook.map((d) => rows.push(createData(...d)));
+    }
+    console.log("rows", rows);
+  }, [buyOrderBook, sellOrderBook, rows]);
   useEffect(() => {
     getAssets();
   }, []);
@@ -97,6 +95,7 @@ function Detail({
     // console.log(sellOrderBook);
     // console.log("this is length", buyOrderBook.length);
     // console.log("this is entries", buyOrderBook);
+    // getFullOrderBook();
   }, [buyOrderBook, sellOrderBook]);
 
   return (
@@ -107,7 +106,8 @@ function Detail({
       {loading ? (
         <h1>Loading</h1>
       ) : (
-        <div className="default-frame">
+        // <div className="default-frame">
+        <div>
           {/* 짧은 것과 긴 것 비교해서 하기  */}
           <div className="grid-container">
             <Grid
@@ -132,7 +132,7 @@ function Detail({
           {buyOrderBook.length !== undefined &&
           sellOrderBook.length !== undefined ? (
             <div>
-              <BasicTable data={buyOrderBook} />
+              <BasicTable buyData={buyOrderBook} sellData={sellOrderBook} />
               {buyOrderBook.map((value) => (
                 <div>
                   {value[0]} | {value[1]}
