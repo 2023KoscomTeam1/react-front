@@ -2,10 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Nav from "../components/Nav";
-import ImageCropper from "../utils/ImageCropper";
+
 import { Image } from "@mui/icons-material";
 import { Container, Grid, Typography } from "@mui/material";
 import "./Home.css";
+import BasicTable from "../components/BasicTable";
 
 function Detail({
   asset_id,
@@ -19,6 +20,7 @@ function Detail({
 }) {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
+  const [fetching, setFetching] = useState(true);
   const [assets, setAssets] = useState({});
   const [stockCount, setStockCount] = useState({});
   const [buyOrderBook, setBuyOrderBook] = useState({});
@@ -45,14 +47,16 @@ function Detail({
     const buyOrder = Object.entries(data.order_book);
     buyOrder.sort((a, b) => b[0] - a[0]);
     setSellOrderBook(buyOrder);
-  }, [buyOrderBook]);
+    setFetching(true);
+  }, [buyOrderBook, sellOrderBook]);
 
   const getsellOrderBook = useCallback(async () => {
     const { data } = await axios.get(`http://localhost:3000/order/${id}/buy`);
     const sellOrder = Object.entries(data.order_book);
     sellOrder.sort((a, b) => b[0] - a[0]);
     setBuyOrderBook(sellOrder);
-  }, [sellOrderBook]);
+    setFetching(true);
+  }, [buyOrderBook, sellOrderBook]);
 
   // const getOrder = useCallback(async () => {
   //   const minNum = Math.min(...Object.keys(buyOrderBook));
@@ -89,9 +93,10 @@ function Detail({
   }, []);
 
   useEffect(() => {
-    console.log(buyOrderBook);
-    console.log(sellOrderBook);
-    console.log("this is entries", buyOrderBook);
+    // console.log(buyOrderBook);
+    // console.log(sellOrderBook);
+    // console.log("this is length", buyOrderBook.length);
+    // console.log("this is entries", buyOrderBook);
   }, [buyOrderBook, sellOrderBook]);
 
   return (
@@ -124,25 +129,27 @@ function Detail({
             width="318"
           />
 
+          {buyOrderBook.length !== undefined &&
+          sellOrderBook.length !== undefined ? (
+            <div>
+              <BasicTable data={buyOrderBook} />
+              {buyOrderBook.map((value) => (
+                <div>
+                  {value[0]} | {value[1]}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div></div>
+          )}
+
           <h3>차트</h3>
           <div>{assets.name}</div>
           <div>{assets.currnetUnitPrice}</div>
           <div>{assets.address}</div>
           <div>{stockCount} 잔고</div>
           <div>차트</div>
-          {/* <div>호가{buyOrderBook[0]}</div> */}
-          {/* <div>호가{sellOrderBook[0]}</div> */}
-          {/* 오늘자 외인, 개인, 기관 매수 혹은 매도 금액 표기 */}
-          {buyOrderBook.map(([key, value]) => (
-            <div key={value}>
-              <div>
-                {key} | {value}
-              </div>
-              {/* {value.map((v) => (
-                <img src={v} alt={key} height={70} key={v} />
-              ))} */}
-            </div>
-          ))}
+
           <div>거래 정보</div>
           <div>주문 수량</div>
           <div>주문 가격</div>

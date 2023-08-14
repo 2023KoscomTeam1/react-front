@@ -18,7 +18,7 @@ function App() {
         <Route path="/user/:id" element={<MyPage />} />
         <Route path="/issues" element={<Issues />} />
         <Route path="/company/portfolio" element={<EPortfolio />} />
-        <Route path="/basictable" element={<BasicTable />} />
+        {/* <Route path="/basictable" element={<BasicTable />} /> */}
       </Routes>
     </Router>
   );
