@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./OwnAsset.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { IoLocationSharp } from "react-icons/io5";
 
 function OwnAsset({
   asset_id,
@@ -30,18 +31,26 @@ function OwnAsset({
 
   return (
     <div className="own-asset-box" onClick={() => navigateAssetDetail(asset_id)}>
-      <div class="img-wrapper">
+      <div className="img-wrapper">
         <img src={asset.imageUrl} alt={asset.name}/>
       </div>
       <div>
-        {/* <div className="inblock-item">{asset_id}</div> */}
-        <Link to={`/assets/detail/${asset_id}`}>{asset.name}</Link>
-        <p className="left-label"></p><div className="right-label">{asset.address}</div>
-        <p className="left-label"></p>총 평가금액<div className="right-label">{asset.wholePrice}</div>
-        <p className="left-label"></p>단위 가격<div className="right-label">{asset.currentUnitPrice}</div>
-        <p className="left-label"></p>수익율: <div className="right-label">{asset.endPrice}</div>
-        <p className="left-label"></p>보유 수량:<div className="right-label"> 보유수량: {count}</div>
-        <p className="left-label"></p><div className="right-label"> 평균가: {averagePrice}</div>
+        <div className="asset-topbox">
+            <div className="content-span">
+                <div className="asset-name">{asset.name}</div>
+                <div className="basic-text">보유수량: {count}</div>
+            </div>
+
+            <div className="price-info">
+                <div className="basic-text">{asset.currentUnitPrice * count}</div>
+                <div className="basic-text">{(asset.currentUnitPrice - averagePrice) * count}</div>
+            </div>
+        </div>
+
+        <div className="location-label">
+            <IoLocationSharp/>
+            <div className="address-label">{asset.address}</div>
+        </div>
       </div>
     </div>
   );
