@@ -9,18 +9,12 @@ import Paper from "@mui/material/Paper";
 
 // 파라미터로 rows 넣어야 함
 export default function BasicTable({ buyData, sellData }) {
-  let rows = [{ sell: 0, orderPrice: 0, buy: 0 }];
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
+  let rows = [];
+  // for (let i = 0; i < buyData.length + sellData.length; i++) {
+  //   rows.push({ sell: 0, orderPrice: 0, buy: 0 });
+  // }
 
-  // let rows2 = [
-  //   createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  // createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  // createData("Eclair", 262, 16.0, 24, 6.0),
-  // createData("Cupcake", 305, 3.7, 67, 4.3),
-  // createData("Gingerbread", 356, 16.0, 49, 3.9),
-  // ];
+  const [rowData, setRowData] = useState([{ sell: 0, orderPrice: 0, buy: 0 }]);
 
   function createBuyData(orderPrice, amount) {
     return { sell: 0, orderPrice, buy: amount };
@@ -30,23 +24,24 @@ export default function BasicTable({ buyData, sellData }) {
     return { sell: amount, orderPrice, buy: 0 };
   }
 
-  useEffect(() => {
-    rows = [];
-    buyData.map((d) => rows.push(createBuyData(...d)));
+  const putData = useCallback(async () => {
     sellData.map((d) => rows.push(createSellData(...d)));
+    buyData.map((d) => rows.push(createBuyData(...d)));
+    setRowData(rows);
+  }, []);
+
+  useEffect(() => {
+    // rows = [];
+    putData();
     console.log("this is rows", rows);
+    // setRowData(rows);
+    console.log("rowData", rowData);
     // console.log(rows2);
     // rows2.push(createData("Frozen yoghurt", 159, 6.0, 24, 4.0));
-  }, [rows]);
-  useEffect(() => {}, [createBuyData]);
+  }, [rowData]);
 
-  // const rows = [
-  //   createData("Frozen yoghurt", 159, 6.0),
-  //   createData("Ice cream sandwich", 237, 9.0),
-  //   createData("Eclair", 262, 16.0),
-  //   createData("Cupcake", 305, 3.7),
-  //   createData("Gingerbread", 356, 16.0),
-  // ];
+  // useEffect(() => {}, [rowData]);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500, minHeight: 600 }} aria-label="simple table">
@@ -58,9 +53,8 @@ export default function BasicTable({ buyData, sellData }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rowData.map((row) => (
             <TableRow>
-              {/* <TableCell>lineHeight</TableCell> */}
               <TableCell align="right">{row.sell}</TableCell>
               <TableCell align="center">{row.orderPrice}</TableCell>
               <TableCell align="left">{row.buy}</TableCell>

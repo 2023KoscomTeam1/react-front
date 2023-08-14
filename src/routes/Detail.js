@@ -63,17 +63,6 @@ function Detail({
     setFetching(true);
   }, [buyOrderBook, sellOrderBook]);
 
-  const getFullOrderBook = useCallback(async () => {
-    console.log("buy", buyOrderBook);
-    console.log("sell", sellOrderBook);
-    if (buyOrderBook.length != undefined) {
-      buyOrderBook.map((d) => rows.push(createData(...d)));
-    }
-    if (sellOrderBook.length != undefined) {
-      sellOrderBook.map((d) => rows.push(createData(...d)));
-    }
-    console.log("rows", rows);
-  }, [buyOrderBook, sellOrderBook, rows]);
   useEffect(() => {
     getAssets();
   }, []);
@@ -133,11 +122,11 @@ function Detail({
           sellOrderBook.length !== undefined ? (
             <div>
               <BasicTable buyData={buyOrderBook} sellData={sellOrderBook} />
-              {buyOrderBook.map((value) => (
-                <div>
+              {/* {buyOrderBook.map((value) => (
+                <div key={value}>
                   {value[0]} | {value[1]}
                 </div>
-              ))}
+              ))} */}
             </div>
           ) : (
             <div></div>
