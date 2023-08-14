@@ -23,6 +23,7 @@ function Detail({
   const [stockCount, setStockCount] = useState({});
   const [buyOrderBook, setBuyOrderBook] = useState({});
   const [sellOrderBook, setSellOrderBook] = useState({});
+  const [orderRange, setOrderRange] = useState({});
   const getAssets = useCallback(async () => {
     const { data } = await axios.get(`http://localhost:8080/assets/${id}`);
     setAssets(data.asset);
@@ -39,10 +40,38 @@ function Detail({
     setStockCount(data.user_assets[0].count);
   }, []);
 
-  const getbuyOrderBook = useCallback(async () => {}, []);
+  const getbuyOrderBook = useCallback(async () => {
+    const { data } = await axios.get(`http://localhost:3000/order/${id}/sell`);
+    const buyOrder = Object.entries(data.order_book);
+    buyOrder.sort((a, b) => b[0] - a[0]);
+    setSellOrderBook(buyOrder);
+  }, [buyOrderBook]);
 
-  const getsellOrderBook = useCallback(async () => {}, []);
+  const getsellOrderBook = useCallback(async () => {
+    const { data } = await axios.get(`http://localhost:3000/order/${id}/buy`);
+    const sellOrder = Object.entries(data.order_book);
+    sellOrder.sort((a, b) => b[0] - a[0]);
+    setBuyOrderBook(sellOrder);
+  }, [sellOrderBook]);
 
+  // const getOrder = useCallback(async () => {
+  //   const minNum = Math.min(...Object.keys(buyOrderBook));
+  //   const midNum = Math.max(...Object.keys(buyOrderBook));
+  //   const maxNum = Math.max(...Object.keys(sellOrderBook));
+  //   // for (let i = minNum; i <= maxNum; i += 500) {
+  //   //   console.log(i);
+  //   // }
+  //   // const arr = Array.from(
+  //   //   Array((maxNum - minNum) / 500 + 1),
+  //   //   (_, index) => index * 500 + minNum
+  //   // );
+  //   // setOrderRange(arr);
+  //   // console.log("this is orderrange", orderRange);
+  //   // console.log(midNum);
+  //   const buyOrder = Object.entries(buyOrderBook);
+  //   buyOrder.sort((a, b) => b[0] - a[0]);
+  //   console.log(buyOrder);
+  // });
   useEffect(() => {
     getAssets();
   }, []);
@@ -52,11 +81,18 @@ function Detail({
   }, []);
 
   useEffect(() => {
-    getStockCount();
+    getbuyOrderBook();
   }, []);
+
   useEffect(() => {
-    getStockCount();
+    getsellOrderBook();
   }, []);
+
+  useEffect(() => {
+    console.log(buyOrderBook);
+    console.log(sellOrderBook);
+    console.log("this is entries", buyOrderBook);
+  }, [buyOrderBook, sellOrderBook]);
 
   return (
     <div>
@@ -94,8 +130,19 @@ function Detail({
           <div>{assets.address}</div>
           <div>{stockCount} 잔고</div>
           <div>차트</div>
-          <div>호가</div>
+          {/* <div>호가{buyOrderBook[0]}</div> */}
+          {/* <div>호가{sellOrderBook[0]}</div> */}
           {/* 오늘자 외인, 개인, 기관 매수 혹은 매도 금액 표기 */}
+          {buyOrderBook.map(([key, value]) => (
+            <div key={value}>
+              <div>
+                {key} | {value}
+              </div>
+              {/* {value.map((v) => (
+                <img src={v} alt={key} height={70} key={v} />
+              ))} */}
+            </div>
+          ))}
           <div>거래 정보</div>
           <div>주문 수량</div>
           <div>주문 가격</div>
