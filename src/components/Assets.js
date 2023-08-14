@@ -4,7 +4,7 @@ import "../App.css";
 function Assets({
   asset_id,
   name,
-  image_url = "https://drive.google.com/uc?id=1E_tfnKmcwQZQTVAC6uTAA5aN3dx3AeZG",
+  image_url,
   address,
   whole_price,
   unit_current_price,

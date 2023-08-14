@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import Assets from "../components/Assets";
+import Nav from "../components/Nav";
+import "../App.css";
+import SearchBox from "../components/SearchBox";
 
 function List() {
   const [loading, setLoading] = useState(true);
@@ -36,14 +39,21 @@ function List() {
 
   return (
     <div>
-      <h1>Here goes list page</h1>
+      <Nav/>
+      <div className="default-frame">
       {loading ? (
         <h1>Loading</h1>
       ) : (
         <div>
-          <h3>전체 매물 | 인기 매물 | 나의 지역 | 공모 중</h3>
+          <SearchBox text="투자 상품 검색" w={300}></SearchBox>
+          <div className="tab-buttons">
+          <button className="tab-title-btn">전체 매물</button>
+          <button className="tab-title-btn">인기 매물</button>
+          <button className="tab-title-btn">나의 지역</button>
+          <button className="tab-title-btn">공모 중</button>
+          </div>
           {assets.map((asset) => (
-            <Assets
+            <div className="color-under-bar"><Assets
               key={asset.asset_id}
               asset_id={asset.asset_id}
               name={asset.name}
@@ -53,9 +63,11 @@ function List() {
               unit_current_price={asset.unit_current_price}
               end_price={asset.end_price}
             />
+            </div>
           ))}
         </div>
       )}
+      </div>
     </div>
   );
 }

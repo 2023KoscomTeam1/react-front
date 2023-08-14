@@ -5,7 +5,7 @@ function Ipo({
   ipo_id,
   name,
   address,
-  image_url = "https://drive.google.com/uc?id=1E_tfnKmcwQZQTVAC6uTAA5aN3dx3AeZG",
+  image_url,
   target_amount,
   current_amount,
   unit_price,

@@ -1,0 +1,23 @@
+.own-asset-box {
+    display: flex;
+    height: 80px;
+}
+
+.img-wrapper {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.img-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(55, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+    border-radius: 15px;
+}

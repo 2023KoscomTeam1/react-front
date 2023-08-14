@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import "../../App.css";
-import Assets from "../Assets";
 import Ipo from "../Ipo";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import OwnAsset from "../OwnAsset";
 
 class newClass extends HTMLElement {
   connectedCallback() {
@@ -15,14 +17,33 @@ class newClass extends HTMLElement {
 customElements.define('custom-input', newClass)
 
 function IPortfolio({ user }) {
+  const [ipo_infos, setIPOinfos] = useState({});
+  const [loading, setLoading] = useState(true)
+  const jsonFetcher  = async () => {
+    const res = await axios.get(`http://localhost:8080/assets/list`)
+    console.log(res.data.assets)
+
+    const assets = res.data.assets
+    const assetList = (user.user_assets.map((u) => u.assetId))
+
+    const filtered_assets = assets.filter((a) => assetList.includes(a.assetId));
+    console.log(filtered_assets);
+    setLoading(false);
+    // for(filtered_assets)
+  };
+  useEffect(() => {
+    jsonFetcher();
+  }, []);
   return (
     <div>
         <h2 className="color-title"> {user.user_name} 님의 보유자산 </h2>
-        <div className="content-font">
-          <p>주문가: {user.balance} 원</p>
-          <hr/>
+        <div className="main-amount">
+          <p className="left-label">주문 가능 금액: </p> 
+          <p className="right-label"> {user.balance} 원</p>
+          </div>
+          {/* <hr/> */}
           <button className="more-info-button">채우기 or 보내기 </button>
-        </div>
+        
 
         <h2 className="color-title">부동산</h2>
         <div className="amount-label">
@@ -40,27 +61,28 @@ function IPortfolio({ user }) {
         <hr/>
 
         <div className="asset-list">
-          <div> asset정보 </div>
-          {user.user_assets.map((asset) => (
-            <Assets
-              asset_id={asset.asset_id}
+          {user.user_assets ? <div> {user.user_assets.map((asset) => (
+            <OwnAsset
+              asset_id={asset.assetId}
               count={asset.count}
               averagePrice={asset.averagePrice}
             />
-          ))}
-          <hr/>
+          ))} </div> : <div className="gray-small-text"> 새로운 상품에 투자해보세요! </div>}
+
+          
+          {/* <hr/> */}
         <button className="more-info-button">대기중인 주문</button>
         </div>
 
         <h2 className="color-title">공모 진행중</h2>
         <div className="ipo-list">
-          <div> ipo-item 정보 </div>
-          {/* {user.user_ipos.map((ipo) => (
+          {user.user_ipos ? <div> {user.user_ipos.map((ipo) => (
             <Ipo
               ipo_id={ipo.ipo_id}
               count={ipo.count}
             />
-          ))} */}
+          ))} </div> : <div className="gray-small-text"> 새로운 공모를 신청해보세요! </div>}
+          
           <hr/>
           {user.user_place}
         </div>
