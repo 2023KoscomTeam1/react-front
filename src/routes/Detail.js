@@ -79,14 +79,6 @@ function Detail({
     getsellOrderBook();
   }, []);
 
-  // useEffect(() => {
-  // console.log(buyOrderBook);
-  // console.log(sellOrderBook);
-  // console.log("this is length", buyOrderBook.length);
-  // console.log("this is entries", buyOrderBook);
-  // getFullOrderBook();
-  // }, [buyOrderBook, sellOrderBook]);
-
   return (
     <div>
       <Nav />

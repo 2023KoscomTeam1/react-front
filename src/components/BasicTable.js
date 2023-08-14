@@ -1,13 +1,34 @@
 import { useCallback, useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import "../App.css";
+import { styled } from "@mui/material";
 
-// 파라미터로 rows 넣어야 함
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
 export default function BasicTable({ buyData, sellData }) {
   let rows = [];
 
@@ -36,21 +57,31 @@ export default function BasicTable({ buyData, sellData }) {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500, minHeight: 600 }} aria-label="simple table">
+      <Table
+        sx={{ minWidth: 100, minHeight: 600 }}
+        aria-label="simple table"
+        className={"tableHead"}
+      >
         <TableHead>
-          <TableRow>
-            <TableCell align="right">매도</TableCell>
-            <TableCell align="center">호가</TableCell>
-            <TableCell align="left">매수</TableCell>
-          </TableRow>
+          <StyledTableRow>
+            <StyledTableCell align="right" className={"tableHead"}>
+              매도
+            </StyledTableCell>
+            <StyledTableCell align="center" className={"tableHead"}>
+              호가
+            </StyledTableCell>
+            <StyledTableCell align="left" className={"tableHead"}>
+              매수
+            </StyledTableCell>
+          </StyledTableRow>
         </TableHead>
         <TableBody>
           {rowData.map((row) => (
-            <TableRow key={row.orderPrice}>
-              <TableCell align="right">{row.sell}</TableCell>
-              <TableCell align="center">{row.orderPrice}</TableCell>
-              <TableCell align="left">{row.buy}</TableCell>
-            </TableRow>
+            <StyledTableRow key={row.orderPrice}>
+              <StyledTableCell align="right">{row.sell}</StyledTableCell>
+              <StyledTableCell align="center">{row.orderPrice}</StyledTableCell>
+              <StyledTableCell align="left">{row.buy}</StyledTableCell>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>
