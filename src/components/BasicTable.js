@@ -10,9 +10,6 @@ import Paper from "@mui/material/Paper";
 // 파라미터로 rows 넣어야 함
 export default function BasicTable({ buyData, sellData }) {
   let rows = [];
-  // for (let i = 0; i < buyData.length + sellData.length; i++) {
-  //   rows.push({ sell: 0, orderPrice: 0, buy: 0 });
-  // }
 
   const [rowData, setRowData] = useState([{ sell: 0, orderPrice: 0, buy: 0 }]);
 
@@ -25,22 +22,17 @@ export default function BasicTable({ buyData, sellData }) {
   }
 
   const putData = useCallback(async () => {
-    sellData.map((d) => rows.push(createSellData(...d)));
-    buyData.map((d) => rows.push(createBuyData(...d)));
-    setRowData(rows);
-  }, []);
+    if (rows.length !== buyData.length + sellData.length) {
+      sellData.map((d) => rows.push(createSellData(...d)));
+      buyData.map((d) => rows.push(createBuyData(...d)));
+
+      setRowData(rows);
+    }
+  }, [rows]);
 
   useEffect(() => {
-    // rows = [];
     putData();
-    console.log("this is rows", rows);
-    // setRowData(rows);
-    console.log("rowData", rowData);
-    // console.log(rows2);
-    // rows2.push(createData("Frozen yoghurt", 159, 6.0, 24, 4.0));
-  }, [rowData]);
-
-  // useEffect(() => {}, [rowData]);
+  }, []);
 
   return (
     <TableContainer component={Paper}>
@@ -54,7 +46,7 @@ export default function BasicTable({ buyData, sellData }) {
         </TableHead>
         <TableBody>
           {rowData.map((row) => (
-            <TableRow>
+            <TableRow key={row.orderPrice}>
               <TableCell align="right">{row.sell}</TableCell>
               <TableCell align="center">{row.orderPrice}</TableCell>
               <TableCell align="left">{row.buy}</TableCell>

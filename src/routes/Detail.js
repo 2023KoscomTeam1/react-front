@@ -53,7 +53,7 @@ function Detail({
     buyOrder.sort((a, b) => b[0] - a[0]);
     setSellOrderBook(buyOrder);
     setFetching(true);
-  }, [buyOrderBook, sellOrderBook]);
+  }, []);
 
   const getsellOrderBook = useCallback(async () => {
     const { data } = await axios.get(`http://localhost:3000/order/${id}/buy`);
@@ -61,7 +61,7 @@ function Detail({
     sellOrder.sort((a, b) => b[0] - a[0]);
     setBuyOrderBook(sellOrder);
     setFetching(true);
-  }, [buyOrderBook, sellOrderBook]);
+  }, []);
 
   useEffect(() => {
     getAssets();
@@ -79,13 +79,13 @@ function Detail({
     getsellOrderBook();
   }, []);
 
-  useEffect(() => {
-    // console.log(buyOrderBook);
-    // console.log(sellOrderBook);
-    // console.log("this is length", buyOrderBook.length);
-    // console.log("this is entries", buyOrderBook);
-    // getFullOrderBook();
-  }, [buyOrderBook, sellOrderBook]);
+  // useEffect(() => {
+  // console.log(buyOrderBook);
+  // console.log(sellOrderBook);
+  // console.log("this is length", buyOrderBook.length);
+  // console.log("this is entries", buyOrderBook);
+  // getFullOrderBook();
+  // }, [buyOrderBook, sellOrderBook]);
 
   return (
     <div>
