@@ -295,6 +295,105 @@ colorhr > hr {
   font-weight: bold;
 }
 
+.ipo-wrapper {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+
+}
+
+.ipo-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.vertical-progress-bar {
+  width: 100px;
+  height: 250px;
+  border: 1px solid var(--koscom-color);
+  position: relative;
+  display: inline-block;
+  margin-right: 15px;
+  border-radius: 10px;
+}
+
+.filler {
+  background-color: var(--koscom-color);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  transition: height 0.3s ease;
+  border-radius: 10px;
+}
+
+.filler-text {
+  font-family: "contentFont";
+  font-weight: bold;
+  margin-left: 25px;
+}
+
+.ipo-top-box {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+.ipo-top-left {
+  width: 200px;
+  margin-right: 5px;
+}
+
+.ipo-title {
+  font-family: "titleFont";
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.ipo-top-right {
+  margin-top: 5px;
+  font-family: "titleFont";
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+.ipo-bottom-box {
+  display: flex;
+}
+
+.ipo-info-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-family: "titleFont";
+}
+
+.number-infos {
+  width: 80%;
+  margin-right: 5px;
+}
+
+.button-span {
+  display: flex;
+  justify-content: end;
+}
+
+.ipo-info-box {
+  margin-top: 0px;
+  /* border: solid var(--koscom-color); */
+  border-radius: 10px;
+  padding: 5px;
+  /* background-color: #eceff2; */
+}
 
 @keyframes App-logo-spin {
   from {
