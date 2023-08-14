@@ -47,8 +47,6 @@
   object-fit: cover;
   margin-top: 10px;
   margin-bottom: 10px;
-  
-  
 }
 /* @keyframes를 사용하여 배너 이동 애니메이션 정의 */
 @keyframes scrollBanner {
@@ -65,10 +63,8 @@
   justify-content: center;
   margin-top: -50px;
   margin-bottom: 50px;
-  
-
 }
-.banner-title{
+.banner-title {
   display: flex;
   font-family: "sharp";
   font-size: 10;
@@ -78,3 +74,7 @@
 /* 추가적인 스타일링 작업을 수행할 수 있습니다 */
 
 /* 나머지 스타일들도 추가할 수 있음 */
+
+.grid-container {
+  background-color: #45a049;
+}

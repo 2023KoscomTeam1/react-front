@@ -6,6 +6,7 @@ import MyPage from "./routes/MyPage";
 import Detail from "./routes/Detail";
 import Issues from "./routes/Issues";
 import EPortfolio from "./components/enterprise/Portfolio";
+import BasicTable from "./components/BasicTable";
 function App() {
   return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/user/:id" element={<MyPage />} />
         <Route path="/issues" element={<Issues />} />
         <Route path="/company/portfolio" element={<EPortfolio />} />
+        {/* <Route path="/basictable" element={<BasicTable />} /> */}
       </Routes>
     </Router>
   );
