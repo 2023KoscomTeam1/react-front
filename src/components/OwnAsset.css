@@ -1,0 +1,65 @@
+:root { /* CSS 전역 변수 선언 */
+    /* 변수명은 앞에 --를 붙이고, 사용시에는 var(--변수명) 형식으로 사용한다.*/
+    --koscom-color : #E37622;
+    --gray-color: #72787F;
+  }  
+
+/*font*/
+@font-face {
+    font-family: "contentFont";
+    src: url('../fonts/Gowun_Dodum/GowunDodum-Regular.ttf');
+  }
+
+.own-asset-box {
+    display: flex;
+    height: 80px;
+}
+
+.img-wrapper {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.img-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+    border-radius: 15px;
+}
+
+.content-div {
+    display: flex;
+}
+
+.basic-text {
+    font-size: 0.7rem;
+    font-family: "contentFont";
+    
+}
+
+.location-label {
+    display: flex;
+}
+
+.address-label {
+    font-size: 0.6rem;
+}
+
+.asset-name {
+    height: 20px;
+}
+
+.asset-topbox {
+    display: flex;
+}
+
+.content-span {
+    width: 100%;
+}

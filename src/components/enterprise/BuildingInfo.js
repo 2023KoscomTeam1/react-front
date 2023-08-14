@@ -17,19 +17,19 @@ export default function BuildingInfo() {
             </Typography>
             <span className="sad">
                 <p>주소</p>
-                <p className="value">서울시 강남구 테헤란로 51길 14</p>
+                <p className="value">충남 예산군 덕산면 덕산온천로 227</p>
             </span>
             <span className='sad'>
             <p>규모</p>
-                <p className="value">B2~13F </p>
+                <p className="value">1~2F </p>
             </span>
             <span className='sad'>
             <p>거래대상</p>
-                <p className="value"> B2~13F </p>
+                <p className="value"> 1~2F </p>
             </span>
             <span className='sad'>
             <p>거래면적</p>
-                <p className="value">215.71평 </p>
+                <p className="value">55.71평 </p>
             </span>
             <span className="sad">
                 <p>건폐율</p>
