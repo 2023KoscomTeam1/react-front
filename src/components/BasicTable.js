@@ -27,6 +27,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:last-child td, &:last-child th": {
     border: 0,
   },
+  height: "30px",
 }));
 
 export default function BasicTable({ buyData, sellData }) {
@@ -63,7 +64,9 @@ export default function BasicTable({ buyData, sellData }) {
         className={"tableHead"}
       >
         <TableHead>
-          <StyledTableRow>
+          <StyledTableRow
+            style={{ backgroundColor: "#f5f5f5", height: "35px" }}
+          >
             <StyledTableCell align="right" className={"tableHead"}>
               매도
             </StyledTableCell>
