@@ -2,11 +2,13 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Nav from "../components/Nav";
-
+import PlaceIcon from "@mui/icons-material/Place";
 import { Image } from "@mui/icons-material";
-import { Container, Grid, Typography } from "@mui/material";
+import { ButtonGroup, Container, Grid, Typography } from "@mui/material";
 import "./Home.css";
 import BasicTable from "../components/BasicTable";
+import { Button, Sheet } from "@mui/joy";
+import InfoData from "../components/InfoData";
 
 function createData(sell, orderPrice, buy) {
   return { sell: sell ? sell : 0, orderPrice, buy: buy ? buy : 0 };
@@ -31,6 +33,12 @@ function Detail({
   const [buyOrderBook, setBuyOrderBook] = useState({});
   const [sellOrderBook, setSellOrderBook] = useState({});
   const [orderRange, setOrderRange] = useState({});
+  const [activeInfo, setActiveInfo] = useState(null); // 현재 활성화된 화면을 상태로 관리
+
+  const handleButtonClick = (screen) => {
+    setActiveInfo(screen); // 버튼 클릭에 따라 화면 변경
+  };
+
   const getAssets = useCallback(async () => {
     const { data } = await axios.get(`http://localhost:8080/assets/${id}`);
     setAssets(data.asset);
@@ -77,13 +85,13 @@ function Detail({
 
   useEffect(() => {
     getsellOrderBook();
+    console.log(assets);
   }, []);
 
   return (
     <div>
       <Nav />
 
-      <h1>Here goes my page</h1>
       {loading ? (
         <h1>Loading</h1>
       ) : (
@@ -102,40 +110,65 @@ function Detail({
               hi
             </Grid>
           </div>
-
-          <img
+          {/* <img
             src={assets.imageUrl}
             alt="assetId"
             className="home-image"
             width="318"
-          />
-
-          {buyOrderBook.length !== undefined &&
-          sellOrderBook.length !== undefined ? (
-            <div>
-              <BasicTable buyData={buyOrderBook} sellData={sellOrderBook} />
-              {/* {buyOrderBook.map((value) => (
-                <div key={value}>
-                  {value[0]} | {value[1]}
-                </div>
-              ))} */}
+          /> */}
+          <div className="detail-below">
+            <div className="sheet-data">
+              <span className="button-container">
+                <ButtonGroup aria-label="outlined primary button group">
+                  <Button
+                    onClick={() => handleButtonClick("Chart")}
+                    color={
+                      activeInfo === "Chart" || activeInfo === null
+                        ? "primary"
+                        : "default"
+                    }
+                  >
+                    차트
+                  </Button>
+                  <Button
+                    onClick={() => handleButtonClick("Order")}
+                    color={activeInfo === "Order" ? "primary" : "default"}
+                  >
+                    호가
+                  </Button>
+                  <Button
+                    onClick={() => handleButtonClick("Info")}
+                    color={activeInfo === "Info" ? "primary" : "default"}
+                  >
+                    거래정보
+                  </Button>
+                </ButtonGroup>
+              </span>
+              {activeInfo === "Chart" || activeInfo === null}
+              {activeInfo === "Order" &&
+                buyOrderBook.length !== undefined &&
+                sellOrderBook.length !== undefined && (
+                  <BasicTable buyData={buyOrderBook} sellData={sellOrderBook} />
+                )}{" "}
+              {activeInfo === "Info" && <InfoData />}
             </div>
-          ) : (
-            <div></div>
-          )}
-
-          <h3>차트</h3>
-          <div>{assets.name}</div>
-          <div>{assets.currnetUnitPrice}</div>
-          <div>{assets.address}</div>
-          <div>{stockCount} 잔고</div>
-          <div>차트</div>
-
-          <div>거래 정보</div>
-          <div>주문 수량</div>
-          <div>주문 가격</div>
-          <div>매수</div>
-          <div>매도</div>
+            <div className="info-data">
+              <h3>차트</h3>
+              <div>{assets.name}</div>
+              <div>단위 가격 : {assets.currentUnitPrice}</div>
+              {/* 아래 가격 변화시켜야 함 */}
+              <div>평가 금액 : {assets.wholePrice}</div>
+              <div className="location">
+                <PlaceIcon />
+                <div>{assets.address}</div>
+              </div>
+              <div>내 잔고 : {stockCount}</div>
+              <div>주문 수량</div>
+              <div>주문 가격</div>
+              <div>매수</div>
+              <div>매도</div>
+            </div>
+          </div>
         </div>
       )}
     </div>
