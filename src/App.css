@@ -19,6 +19,10 @@
   font-family: "cuteFont";
   src: url('./fonts/Jua/Jua-Regular.ttf');
 }
+@font-face {
+  font-family: "sharp";
+  src: url('./fonts/Nanum_Myeongjo/NanumMyeongjo-Bold.ttf');
+}
 
 .App {
   text-align: center;
@@ -105,6 +109,12 @@
   font-size: 3px;
 }
 
+.progress-label {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  font-size: 3px;
+}
+
 .key-label {
   text-align: left;
 }
@@ -115,6 +125,11 @@
   font-size: 0.6rem;
 }
 
+.value-label2 {
+  text-align: right;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
 colorhr > hr {
   color: var(--koscom-color);
 }

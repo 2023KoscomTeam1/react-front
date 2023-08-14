@@ -20,3 +20,14 @@ p {
     text-align: left;
     /* Left align the text */
 }
+
+.right-allign p{
+    margin: 0;
+    /* Remove default margin to prevent extra spacing */
+    white-space: pre-line;
+    /* Preserve line breaks */
+    text-align: right;
+    /* Left align the text */
+    margin-right: 15px;
+    margin-bottom: 4px;
+}
