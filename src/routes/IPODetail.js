@@ -9,7 +9,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import ColorButton from "../components/Button";
 import ViewPDF from "../components/individual/GovermentPDF";
 
-function IPODetail({}) {
+function IPODetail() {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [ipo, setIPO] = useState({});

@@ -4,15 +4,16 @@ import Nav from "../components/Nav";
 import "../App.css";
 import { Button, ButtonGroup } from "@mui/joy";
 import { styled } from "@mui/material/styles";
-import InputLabel from "@mui/material/InputLabel";
+
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import axios from "axios";
 import SearchBox from "../components/SearchBox";
-import BasicTable from "../components/BasicTable";
+
 import { InputBase } from "@mui/material";
 import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
+import OwnIPO from "../components/OwnIPO";
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(2),
@@ -53,6 +54,7 @@ function List() {
   const [assets, setAssets] = useState();
   const [popular, setPopular] = useState();
   const [home, setHome] = useState();
+  const [ipo, setIpo] = useState();
 
   const [viewer, setViewer] = useState();
 
@@ -80,6 +82,18 @@ function List() {
     const myHome = assets.filter((asset) => asset.placeType === homeTown);
     setHome(myHome);
   }, [viewer, assets]);
+
+  const getIpo = useCallback(async () => {
+    const res = await axios.get(`http://localhost:8080/ipo/list`);
+    const data = res.data.ipo_assets;
+    let arr = [];
+    // data.map((d) => {
+    //   arr.push({ ipoId: d.ipoId, count: 0, myPage: false });
+    // });
+    setIpo(data.map((d) => d.ipoId));
+    // });
+    // setIpo(arr);
+  }, [ipo]);
 
   const place = "경기";
   const handleChange = () => {
@@ -109,6 +123,11 @@ function List() {
   useEffect(() => {
     console.log("this is home", home);
   }, [home]);
+
+  useEffect(() => {
+    getIpo();
+    // console.log(ipo);
+  });
 
   return (
     <div>
@@ -192,13 +211,13 @@ function List() {
             {/* {activeInfo === "all" ? ( */}
             {(activeInfo === "all" || (activeInfo === "hometown" && !viewer)) &&
               assets.map((asset) => (
-                <div className="color-under-bar">
+                <div className="color-under-bar" key={asset.assetId}>
                   <Assets asset={asset} />
                 </div>
               ))}
             {activeInfo === "popular" &&
               popular.map((p) => (
-                <div className="color-under-bar">
+                <div className="color-under-bar" key={p.assetId}>
                   <Assets asset={p} />
                 </div>
               ))}
@@ -206,8 +225,14 @@ function List() {
               viewer &&
               home &&
               home.map((h) => (
-                <div className="color-under-bar">
+                <div className="color-under-bar" key={h.assetId}>
                   <Assets asset={h} />
+                </div>
+              ))}
+            {activeInfo === "inProgress" &&
+              ipo.map((i) => (
+                <div key={i}>
+                  <OwnIPO ipo_id={i} count={0} myPage={false} />
                 </div>
               ))}
           </div>
