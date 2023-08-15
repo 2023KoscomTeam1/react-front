@@ -12,7 +12,7 @@ function OwnIPO({ ipo_id, count, myPage }) {
 
   const jsonFetcher = async () => {
     const res = await axios.get(`http://localhost:8080/ipo/${ipo_id}`);
-    console.log("this is ipo info", res.data.ipo_asset);
+    // console.log("this is ipo info", res.data.ipo_asset);
     setIPO(res.data.ipo_asset);
     setLoading(false);
   };

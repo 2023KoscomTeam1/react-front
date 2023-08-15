@@ -45,11 +45,12 @@ function List() {
   const [popular, setPopular] = useState();
   const [home, setHome] = useState();
   const [ipo, setIpo] = useState();
-
+  const [location, setLocation] = useState("");
   const [viewer, setViewer] = useState();
 
   const auth = useAuthUser();
   const isAuthenticated = useIsAuthenticated();
+
   const handleButtonClick = (screen) => {
     setActiveInfo(screen); // 버튼 클릭에 따라 화면 변경
   };
@@ -80,14 +81,13 @@ function List() {
     setIpo(data.map((d) => d.ipoId));
   }, [ipo]);
 
-  const place = "경기";
-  const handleChange = () => {
-    return;
+  const handleChange = (e) => {
+    setLocation(e.target.value);
   };
 
   useEffect(() => {
     isAuthenticated() && setViewer(Object.values(auth())[0]);
-  });
+  }, []);
 
   useEffect(() => {
     getAssets();
@@ -166,7 +166,7 @@ function List() {
                 <Select
                   labelId="demo-customized-select-label"
                   id="demo-customized-select"
-                  value={place}
+                  value={location}
                   onChange={handleChange}
                   input={<BootstrapInput />}
                   style={{ height: "30px" }}
