@@ -4,13 +4,27 @@ import axios from "axios";
 import Nav from "../components/Nav";
 import PlaceIcon from "@mui/icons-material/Place";
 import { Image } from "@mui/icons-material";
-import { ButtonGroup, Container, Grid, Typography } from "@mui/material";
+import {
+  ButtonGroup,
+  Container,
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputAdornment,
+  OutlinedInput,
+  Tab,
+  Tabs,
+  Typography,
+  createTheme,
+} from "@mui/material";
 import "./Home.css";
 import BasicTable from "../components/BasicTable";
 import { Button, Sheet } from "@mui/joy";
 import InfoData from "../components/InfoData";
 import ViewPDF from "../components/individual/GovermentPDF";
 import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
+import { red } from "@mui/material/colors";
+import ColorButton from "../components/Button";
 
 function createData(sell, orderPrice, buy) {
   return { sell: sell ? sell : 0, orderPrice, buy: buy ? buy : 0 };
@@ -38,14 +52,27 @@ function Detail({
   const [viewer, setViewer] = useState();
   const auth = useAuthUser();
   const isAuthenticated = useIsAuthenticated();
+  const [amount, setAmount] = useState(0);
+  const [price, setPrice] = useState(0);
   const handleButtonClick = (screen) => {
     setActiveInfo(screen); // 버튼 클릭에 따라 화면 변경
   };
-
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#E37622",
+      },
+      secondary: {
+        main: "#f44336",
+      },
+    },
+  });
+  const color = red[500];
   const getAssets = useCallback(async () => {
     try {
       const { data } = await axios.get(`http://localhost:8080/assets/${id}`);
       setAssets(data.asset);
+      setPrice(data.asset.currentUnitPrice);
       setLoading(false);
     } catch (e) {}
   }, []);
@@ -53,8 +80,6 @@ function Detail({
   const getStockCount = useCallback(async () => {
     try {
       const { data } = await axios.get(
-        // TODO: Detail 활용할 때 user_id 받아오도록 하며 바로 아래의 내용으로 변경해야 함
-        // `http://localhost:8080/${user_id}/assets/${id}`
         `http://localhost:8080/user/${viewer}/assets/${id}`
       );
 
@@ -77,6 +102,11 @@ function Detail({
     setBuyOrderBook(sellOrder);
     setFetching(true);
   }, []);
+  const [value, setValue] = useState("one");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   useEffect(() => {
     isAuthenticated() && setViewer(Object.values(auth())[0]);
   });
@@ -97,14 +127,17 @@ function Detail({
     console.log(assets);
   }, []);
 
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
   return (
     <div>
       <Nav />
       {loading ? (
         <h1>Loading</h1>
       ) : (
-        // <div className="default-frame">
-        <div>
+        <div className="default-frame">
+          {/* <div> */}
           {/* 짧은 것과 긴 것 비교해서 하기  */}
           <div className="grid-container">
             <Grid
@@ -127,39 +160,35 @@ function Detail({
           /> */}
           <div className="detail-below">
             <div className="sheet-data">
-              <span className="button-container">
-                <ButtonGroup aria-label="outlined primary button group">
-                  <Button
-                    onClick={() => handleButtonClick("Chart")}
-                    color={
-                      activeInfo === "Chart" || activeInfo === null
-                        ? "primary"
-                        : "default"
-                    }
-                  >
-                    차트
-                  </Button>
-                  <Button
-                    onClick={() => handleButtonClick("Order")}
-                    color={activeInfo === "Order" ? "primary" : "default"}
-                  >
-                    호가
-                  </Button>
-                  <Button
-                    onClick={() => handleButtonClick("Info")}
-                    color={activeInfo === "Info" ? "primary" : "default"}
-                  >
-                    거래정보
-                  </Button>
-                </ButtonGroup>
-              </span>
-              {activeInfo === "Chart" || activeInfo === null}
-              {activeInfo === "Order" &&
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                textColor="primary"
+                // indicatorColor="secondary"
+                indicatorColor="primary"
+                aria-label="secondary tabs example"
+              >
+                <Tab value="one" label="차트" />
+                <Tab value="two" label="호가" />
+                <Tab value="three" label="거래 정보" />
+              </Tabs>
+
+              {value === "one" ? (
+                <div></div>
+              ) : value === "two" &&
                 buyOrderBook.length !== undefined &&
-                sellOrderBook.length !== undefined && (
-                  <BasicTable buyData={buyOrderBook} sellData={sellOrderBook} />
-                )}
-              {activeInfo === "Info" && <InfoData />}
+                sellOrderBook.length !== undefined ? (
+                <BasicTable buyData={buyOrderBook} sellData={sellOrderBook} />
+              ) : value === "three" && assets ? (
+                <InfoData
+                  personalOwnCount={assets.personalOwnCount}
+                  companyOwnCount={assets.companyOwnCount}
+                  foreignOwnCount={assets.foreignOwnCount}
+                  viewCount={assets.viewCount}
+                />
+              ) : (
+                <div></div>
+              )}
             </div>
             <div className="info-data">
               <div>단위 가격 : {assets.currentUnitPrice}</div>
@@ -170,10 +199,108 @@ function Detail({
                 <div>{assets.address}</div>
               </div>
               {isAuthenticated() && <div>내 잔고 : {stockCount}</div>}
-              <div>주문 수량</div>
-              <div>주문 가격</div>
-              <div>매수</div>
-              <div>매도</div>
+              {/* <div>주문 수량</div> */}
+              <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+                <FormHelperText id="outlined-weight-helper-text">
+                  주문 수량
+                </FormHelperText>
+                <OutlinedInput
+                  id="outlined-adornment-weight"
+                  endAdornment={<InputAdornment position="end" />}
+                  aria-describedby="outlined-weight-helper-text"
+                  inputProps={{
+                    "aria-label": "weight",
+                  }}
+                  onChange={(e) => setAmount(e.target.value)}
+                  value={amount}
+                />
+              </FormControl>
+              <Button
+                size="small"
+                variant="outlined"
+                style={{
+                  borderColor: "#E37622",
+                  color: "#E37622",
+                }}
+                onClick={() => {
+                  setAmount(amount + 1);
+                }}
+              >
+                +
+              </Button>
+
+              <Button
+                size="small"
+                variant="outlined"
+                style={{
+                  borderColor: "#E37622",
+                  color: "#E37622",
+                }}
+                onClick={() => {
+                  if (amount - 1 >= 0) {
+                    setAmount(amount - 1);
+                  }
+                }}
+              >
+                -
+              </Button>
+              <br />
+              <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+                <FormHelperText id="outlined-weight-helper-text">
+                  주문 가격
+                </FormHelperText>
+                <OutlinedInput
+                  id="outlined-adornment-weight"
+                  endAdornment={<InputAdornment position="end" />}
+                  aria-describedby="outlined-weight-helper-text"
+                  inputProps={{
+                    "aria-label": "weight",
+                  }}
+                  onChange={(e) => setPrice(e.target.value)}
+                  value={price}
+                />
+              </FormControl>
+              <Button
+                size="small"
+                variant="outlined"
+                style={{
+                  borderColor: "#E37622",
+                  color: "#E37622",
+                }}
+                onClick={() => {
+                  setPrice(price + 500);
+                }}
+              >
+                +
+              </Button>
+
+              <Button
+                size="small"
+                variant="outlined"
+                style={{
+                  borderColor: "#E37622",
+                  color: "#E37622",
+                }}
+                onClick={() => {
+                  if (amount - 500 >= 0) {
+                    setAmount(amount - 500);
+                  }
+                }}
+              >
+                -
+              </Button>
+              <div className="location">
+                <ColorButton text={"매수"} size={10} f={() => {}} c={"red"} />
+
+                <div className="info-data">
+                  <ColorButton
+                    text={"매도"}
+                    size={10}
+                    f={() => {}}
+                    c={"blue"}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

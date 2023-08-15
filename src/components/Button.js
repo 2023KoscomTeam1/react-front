@@ -1,6 +1,6 @@
 import { Button, styled } from "@mui/material";
 
-function ColorButton({ text, size, w, t, f }) {
+function ColorButton({ text, size, w, t, f, c, bc }) {
   const CustomButton = styled(Button)({
     boxShadow: "none",
     textTransform: "none",
@@ -37,9 +37,17 @@ function ColorButton({ text, size, w, t, f }) {
       borderColor: "#white",
     },
   });
+  const backgroundColor = c;
   return (
     <div>
-      <CustomButton varient="contained" type={t} onClick={f}>
+      <CustomButton
+        varient="contained"
+        type={t}
+        onClick={f}
+        style={{
+          backgroundColor,
+        }}
+      >
         {text}
       </CustomButton>
     </div>
