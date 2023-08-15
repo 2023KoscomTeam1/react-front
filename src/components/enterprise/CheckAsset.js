@@ -32,7 +32,7 @@ function CheckAsset() {
                 />
 
                 <p>주소: 충남 예산군 덕산면 덕산온천로 227</p>
-                <p>자산명: 더에스에스타운</p>
+                <p>자산명: 카페 쿠버네티스</p>
                 <p>유형: 상가</p>
                 <hr />
                 <h3 className="color-title"> 상세 정보 </h3>
