@@ -284,7 +284,6 @@ function Detail({
               )}
             </div>
             <div className="info-data">
-                  id="outlined-adornment-weight"
               <div className="number-input-box">
                 <Button
                   size="small"
