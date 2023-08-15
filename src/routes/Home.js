@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import ColorButton from "../components/Button";
 import Nav from "../components/Nav";
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
+import { RxDotFilled } from "react-icons/rx";
 import { Cookies } from "react-cookie";
 import { useIsAuthenticated } from "react-auth-kit";
 
 const cookies = new Cookies();
-
 function Home() {
   const [user, setUser] = useState();
   const isAuthenticated = useIsAuthenticated();
@@ -25,6 +26,24 @@ function Home() {
       console.log("logged out");
     }
   });
+  const slides = [{ url: "/img/home/001.png" }, { url: "/img/home/002.png" }];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prevSlide = () => {
+    const isFirstSlide = currentIndex === 0;
+    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const nextSlide = () => {
+    const isLastSlide = currentIndex === slides.length - 1;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const goToSlide = (slideIndex) => {
+    setCurrentIndex(slideIndex);
+  };
 
   return (
     <div>
@@ -95,7 +114,7 @@ function Home() {
                 className="home-image"
               />
               <div className="register-button">
-                <Link to="/company/portfolio">
+                <Link to={`/user/${user}`}>
                   <ColorButton text={"내 자산 확인하기"} size={5} />
                 </Link>
               </div>
@@ -110,29 +129,6 @@ function Home() {
       </div>
       <div className="default-frame">
         <div className="company-container">
-          <img src="/img/home/001.png" alt="home 1" className="home-image" />
-          <div className="register-button" style={{ marginTop: "-100px" }}>
-            <Link to="/assets">
-              <ColorButton text={"투자하러하기"} size={5} />
-            </Link>
-          </div>
-          <img
-            src="/img/home/intro_bold.png"
-            alt="home 5"
-            className="home-image"
-          />
-          <img src="/img/home/002.png" alt="home 3" className="home-image" />
-          {/* "내 자산 등록하기" 버튼 */}
-          <div className="register-button">
-            <Link to={`/user/${user}`}>
-              <ColorButton text={"내 자산 확인하기"} size={5} />
-            </Link>
-          </div>
-          <img
-            src="/img/home/home_txt.png"
-            alt="home 5"
-            className="home-image"
-          />
           <img src="/img/home/004.png" alt="home 3" className="home-image" />
 
           <hr />
