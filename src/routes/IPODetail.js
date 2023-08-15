@@ -100,9 +100,11 @@ function IPODetail() {
                   <div className="ipo-info-label">
                     <div>현재 수량:</div> <div> {ipo.currentAmount}</div>
                   </div>
-                  <div className="ipo-info-label">
-                    <div>내 공모 수량:</div> <div> {myIpoCount}</div>
-                  </div>
+                  {isAuthenticated() && (
+                    <div className="ipo-info-label">
+                      <div>내 공모 수량:</div> <div> {myIpoCount}</div>
+                    </div>
+                  )}
                   <div className="ipo-info-label">
                     <div>총 증거금:</div> <div> {}</div>
                   </div>
