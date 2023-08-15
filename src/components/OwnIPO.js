@@ -64,7 +64,7 @@ function OwnIPO({ ipo_id, count, myPage }) {
         </div>
         <div className="percent-box">
           <ProgressBar percent={percent} />
-          <div className="gray-small-text">
+          <div className="gray-small-text2">
             {ipo.currentAmount}/{ipo.targetAmount}
           </div>
         </div>

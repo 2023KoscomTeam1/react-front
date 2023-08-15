@@ -405,6 +405,7 @@ function Detail({
           </div>
         </div>
       )}
+      <div className="bottom-empty-space"></div>
     </div>
   );
 }

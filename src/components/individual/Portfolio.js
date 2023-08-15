@@ -88,7 +88,7 @@ function IPortfolio({ user }) {
         <p className={`${
                   total_profit > 0 ? "positive" : total_profit < 0 ? "negative" : "neutral"
                 }`}
-                style={{ fontSize:"0.9rem" }}>
+                style={{ fontSize:"0.8rem" }}>
           {total_profit > 0 ? "▲" : total_profit < 0 ? "▼" : ""}
           {total_profit
             .toString()
@@ -98,7 +98,7 @@ function IPortfolio({ user }) {
       </div>
       <div className="amount-label">
         <p className="key-label">투자 원금:</p>
-        <p className="value-label"> {original_amount.toString()
+        <p className="value-label" style={{ fontSize:"0.8rem" }}> {original_amount.toString()
             .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} </p>
       </div>
 

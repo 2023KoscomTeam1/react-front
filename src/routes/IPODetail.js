@@ -95,7 +95,7 @@ function IPODetail() {
                     <div> {ipo.unitPrice}</div>
                   </div>
                   <div className="ipo-info-label">
-                    <div>공모 수량:</div> <div> {ipo.targetAmount}</div>
+                    <div>목표 공모 수량:</div> <div> {ipo.targetAmount}</div>
                   </div>
                   <div className="ipo-info-label">
                     <div>현재 수량:</div> <div> {ipo.currentAmount}</div>
@@ -123,6 +123,7 @@ function IPODetail() {
             </div>
           </div>
         )}
+        <div className="bottom-empty-space"> </div>
       </div>
     </div>
   );

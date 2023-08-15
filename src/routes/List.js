@@ -159,35 +159,6 @@ function List() {
               </ButtonGroup>
             </span>
 
-            <br />
-            <div className="place-combo">
-              <FormControl sx={{ width: 80, height: 10 }} size="x-small">
-                {/* <InputLabel id="demo-customized-select-label">장소</InputLabel> */}
-                <Select
-                  labelId="demo-customized-select-label"
-                  id="demo-customized-select"
-                  value={location}
-                  onChange={handleChange}
-                  input={<BootstrapInput />}
-                  style={{ height: "30px" }}
-                >
-                  <MenuItem value={"SEOUL"}>서울</MenuItem>
-                  <MenuItem value={"KANGWON"}>강원도</MenuItem>
-                  <MenuItem value={"KYUNGI"}>경기도</MenuItem>
-                  <MenuItem value={"KYUNGSANG"}>경상도</MenuItem>
-                  <MenuItem value={"KWANGJU"}>광주</MenuItem>
-                  <MenuItem value={"DAEJEON"}>대전</MenuItem>
-                  <MenuItem value={"DAEGU"}>대구</MenuItem>
-                  <MenuItem value={"PUSAN"}>부산</MenuItem>
-                  <MenuItem value={"SEJONG"}>세종</MenuItem>
-                  <MenuItem value={"ULSAN"}>울산</MenuItem>
-                  <MenuItem value={"INCHEON"}>인천</MenuItem>
-                  <MenuItem value={"JEONLA"}>전라도</MenuItem>
-                  <MenuItem value={"CHOONGCHUNG"}>충청도</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-            <br />
             {/* {activeInfo === "all" ? ( */}
             {(activeInfo === "all" || (activeInfo === "hometown" && !viewer)) &&
               assets.map((asset) => (
