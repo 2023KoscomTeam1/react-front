@@ -9,23 +9,10 @@ import { RxDotFilled } from "react-icons/rx";
 import { Cookies } from "react-cookie";
 import { useIsAuthenticated } from "react-auth-kit";
 
-const cookies = new Cookies();
 function Home() {
   const [user, setUser] = useState();
   const isAuthenticated = useIsAuthenticated();
-  useEffect(() => {
-    cookies.get("id");
-    // console.log(cookies.get("id"));
-    // console.log("this is _auth", cookies.cookies._auth);
-    if (isAuthenticated()) {
-      // Redirect to Dashboard
-      // console.log("logged in");
-      setUser(cookies.cookies._auth);
-    } else {
-      // Redirect to Login
-      console.log("logged out");
-    }
-  });
+
   const slides = [{ url: "/img/home/001.png" }, { url: "/img/home/002.png" }];
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -114,7 +101,7 @@ function Home() {
                 className="home-image"
               />
               <div className="register-button">
-                <Link to={`/user/${user}`}>
+                <Link to={`/company/portfolio`}>
                   <ColorButton text={"내 자산 확인하기"} size={5} />
                 </Link>
               </div>
