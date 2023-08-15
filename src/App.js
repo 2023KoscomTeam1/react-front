@@ -4,6 +4,7 @@ import Login from "./routes/Login";
 import List from "./routes/List";
 import MyPage from "./routes/MyPage";
 import Detail from "./routes/Detail";
+import IPODetail from "./routes/IPODetail";
 import Issues from "./routes/Issues";
 import EPortfolio from "./components/enterprise/Portfolio";
 import BasicTable from "./components/BasicTable";

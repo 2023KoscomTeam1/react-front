@@ -57,6 +57,7 @@
 
 .location-label {
     display: flex;
+    margin-bottom: 5px;
 }
 
 .address-label {
@@ -71,19 +72,17 @@
 .asset-topbox {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .info-span {
-    width: 140px;
-    margin-bottom: 7px;
+  width: 150px;
+  margin-bottom: 7px;
 }
 
-.price-span {
-  width: 90px;
-  flex-direction: column;
-  align-items: flex-end;
-
-}
+/* .price-span {
+  width: 140px;
+} */
 
 .amount-large {
     font-family: "officialBoldFont";

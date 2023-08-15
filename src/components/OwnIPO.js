@@ -3,6 +3,7 @@ import "./OwnIPO.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { IoLocationSharp } from "react-icons/io5";
+import ProgressBar from "./ProgressBar";
 
 function OwnIPO({
   ipo_id,
@@ -32,7 +33,8 @@ function OwnIPO({
     const target_amount = ipo.targetAmount ? (ipo.targetAmount).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") : ipo.targetAmount;
     const new_count = count ? count.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") : count;
     const dueDate = ipo.dueDate ? (ipo.dueDate).split('T')[0] : ipo.dueDate;
-    const percent = Math.floor(ipo.currentAmount/ipo.targetAmount * 100)/100
+    const percent = Math.floor(ipo.currentAmount/ipo.targetAmount * 10000)/100;
+    const filledWidth = `${percent}%`;
 
   return (
     <div className="own-ipo-box" onClick={() => navigateIPODetail(ipo_id)}>
@@ -54,11 +56,9 @@ function OwnIPO({
         <div className="location-label">
             <IoLocationSharp/>
             <div className="address-label">{ipo.address}</div>
-        </div>
+        </div>        
         <div className="percent-box">
-            <div className="percent-text">
-                {percent} %
-            </div>
+        <ProgressBar percent={percent}/>
             <div className="gray-small-text">
                 {ipo.currentAmount}/{ipo.targetAmount}
             </div>

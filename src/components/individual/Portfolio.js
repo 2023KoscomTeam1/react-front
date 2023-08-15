@@ -17,23 +17,42 @@ class newClass extends HTMLElement {
 customElements.define('custom-input', newClass)
 
 function IPortfolio({ user }) {
-  const [ipo_infos, setIPOinfos] = useState({});
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+  const [totalAmount, setTotalAmount] = useState();
   const jsonFetcher  = async () => {
     const res = await axios.get(`http://localhost:8080/assets/list`)
-    console.log(res.data.assets)
-
-    const assets = res.data.assets
-    const assetList = (user.user_assets.map((u) => u.assetId))
-
-    const filtered_assets = assets.filter((a) => assetList.includes(a.assetId));
-    console.log(filtered_assets);
+    console.log("check!", res.data.assets);
     setLoading(false);
-    // for(filtered_assets)
+    const tmp_asset = res.data.assets;
+    const total_amount = () => {
+      let currentTotalAmount = 0;
+      (user.user_assets).forEach(myAsset => {
+        const asset = tmp_asset.find(asset => asset.assetId === myAsset.assetId);
+        if (asset) {
+          const currentTotalValue = asset.currentUnitPrice * myAsset.count;
+          currentTotalAmount += currentTotalValue;
+        }
+      });
+      return currentTotalAmount;
+    };
+    setTotalAmount(total_amount());
+
   };
   useEffect(() => {
     jsonFetcher();
   }, []);
+
+  /* 투자 원금 */
+  const original_amount = user.user_assets.reduce((acc, cur) => {
+    return acc + cur.count * cur.averagePrice;
+  }, 0);;
+
+  /* 현재 수익 */
+  const total_profit = totalAmount - original_amount;
+  /* 현재 수익율 */
+  const total_profit_percent = (Math.round((total_profit / totalAmount)*10000)) / 100;
+
+
   return (
     <div>
       <p className="my-place">My 지역: {user.user_place}</p>
@@ -49,18 +68,17 @@ function IPortfolio({ user }) {
         <h2 className="color-title">부동산</h2>
         <div className="amount-label">
           <p className="key-label">총 평가액: </p>
-          <p className="value-label"> {user.user_assets.reduce((acc, cur) => {
-              return acc + cur.count * cur.averagePrice;
-          }, 0)} 원
-          </p>
+          <p className="value-label"> {totalAmount ? totalAmount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") : 0}</p>
          </div>
         <div className="amount-label">
           <p className="key-label">총 수익: </p> 
-          <p className="value-label"> #총 평가액 - 투자원금 </p>
+          <p className="value-label"> 
+          {total_profit.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} ({total_profit_percent}%) 
+          </p>
         </div>
         <div className="amount-label">
           <p className="key-label">투자 원금:</p> 
-          <p className="value-label"> #투자원금 </p>
+          <p className="value-label"> {original_amount} </p>
         </div>
       
         <hr/>
