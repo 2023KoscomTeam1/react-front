@@ -237,6 +237,7 @@ function IPODetail() {
                       f={() => {
                         alert("공모 신청이 접수 되었습니다.");
                         setMyIpoCount(myIpoCount + amount);
+                        setAmount(0);
                       }}
                     />
                   </div>
