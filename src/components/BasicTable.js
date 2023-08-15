@@ -15,7 +15,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 7,
   },
 }));
 
@@ -27,7 +27,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:last-child td, &:last-child th": {
     border: 0,
   },
-  height: "30px",
+  height: "10px",
 }));
 
 export default function BasicTable({ buyData, sellData }) {
@@ -59,31 +59,31 @@ export default function BasicTable({ buyData, sellData }) {
   return (
     <TableContainer component={Paper}>
       <Table
-        sx={{ minWidth: 100, minHeight: 600 }}
+        sx={{ minWidth: 100, maxHeight: 300 }}
         aria-label="simple table"
         className={"tableHead"}
       >
         <TableHead>
           <StyledTableRow
-            style={{ backgroundColor: "#f5f5f5", height: "35px" }}
+            style={{ backgroundColor: "#f5f5f5", height: "5px", lineHeight:"1" }}
           >
-            <StyledTableCell align="right" className={"tableHead"}>
+            <StyledTableCell align="right" className={"tableHead"} style={{ fontSize: "0.5rem", padding: "4px 16px", height: "10px" }}>
               매도
             </StyledTableCell>
-            <StyledTableCell align="center" className={"tableHead"}>
+            <StyledTableCell align="center" className={"tableHead"} style={{ fontSize: "0.5rem", padding: "4px 16px", height: "10px" }}>
               호가
             </StyledTableCell>
-            <StyledTableCell align="left" className={"tableHead"}>
+            <StyledTableCell align="left" className={"tableHead"} style={{ fontSize: "0.5rem", padding: "4px 16px", height: "10px" }}>
               매수
             </StyledTableCell>
           </StyledTableRow>
         </TableHead>
         <TableBody>
           {rowData.map((row) => (
-            <StyledTableRow key={row.orderPrice}>
-              <StyledTableCell align="right">{row.sell}</StyledTableCell>
-              <StyledTableCell align="center">{row.orderPrice}</StyledTableCell>
-              <StyledTableCell align="left">{row.buy}</StyledTableCell>
+            <StyledTableRow key={row.orderPrice} style={{}}>
+              <StyledTableCell align="right" style={{ fontSize: "0.5rem", padding: "4px 16px", height: "10px" }}>{row.sell}</StyledTableCell>
+              <StyledTableCell align="center" style={{ fontSize: "0.5rem", padding: "4px 16px", height: "10px" }}>{row.orderPrice}</StyledTableCell>
+              <StyledTableCell align="left" style={{ fontSize: "0.5rem", padding: "4px 16px", height: "10px" }}>{row.buy}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

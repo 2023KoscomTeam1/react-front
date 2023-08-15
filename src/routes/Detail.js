@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Nav from "../components/Nav";
-import PlaceIcon from "@mui/icons-material/Place";
-import { Image } from "@mui/icons-material";
+import { IoLocationSharp } from "react-icons/io5";
+import { Image, Padding } from "@mui/icons-material";
 import {
   ButtonGroup,
   Container,
@@ -130,6 +130,10 @@ function Detail({
   useEffect(() => {
     console.log(value);
   }, [value]);
+
+  const change = assets.endPrice - assets.currentUnitPrice;
+  const change_percent = (change / assets.endPrice) * 100;
+
   return (
     <div>
       <Nav />
@@ -140,7 +144,7 @@ function Detail({
           {/* <div> */}
           {/* 짧은 것과 긴 것 비교해서 하기  */}
           <div className="grid-container">
-            <Grid
+            {/* <Grid
               container
               direction="row"
               justifyContent="flex-start"
@@ -148,19 +152,50 @@ function Detail({
               backgroundColor="red"
               height="30"
             >
-              hi
-            </Grid>
+            </Grid> */}
           </div>
-          <div>{assets.name}</div>
-          {/* <img
+          
+          <img
             src={assets.imageUrl}
             alt="assetId"
             className="home-image"
             width="318"
-          /> */}
+          />
+          <div className="asset-top-info"> 
+          <div className="asset-top-left">
+          <div className="ipo-title">{assets.name}</div>
+            
+              {/* 아래 가격 변화시켜야 함 */}
+            <div style={{
+              fontFamily:"titleFont",
+              marginTop:"7px",
+              fontSize:"0.7rem",
+              marginBottom: "7px",
+              color:"#72787f"
+            }}>평가 금액 : {assets.wholePrice}</div>
+            <div className="location-label">
+              <IoLocationSharp/>
+              <div className="address-label">{assets.address}</div>
+            </div>
+          </div>
+          <div className="asset-top-right">
+            <div style={{marginBottom:"5px", fontWeight:"bold", fontSize:"1rem"}}>{(assets.currentUnitPrice).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</div>
+            <div className={`${(change) > 0 ? "positive" : change < 0 ? "negative" : "neutral"}`}
+              style={{marginBottom:"20px"}}>
+                {(change) > 0 ? "▲" : "▼"} 
+                {(change).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+                ({Math.round(change_percent * 100)/100}%)
+            </div>
+              {isAuthenticated() && <div style={{fontSize:"0.7rem"}}>내 잔고 : {stockCount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</div>}
+          </div>
+          </div>
+          <hr/>
           <div className="detail-below">
             <div className="sheet-data">
-              <span className="button-container">
+              <span className="button-container" style={{
+                  display: "flex",
+                  justifyContent: "center"
+                }}>
                 <ButtonGroup aria-label="outlined primary button group">
                   <Button
                     onClick={() => handleButtonClick("Chart")}
@@ -169,24 +204,38 @@ function Detail({
                         ? "primary"
                         : "default"
                     }
+                    style={{
+                      fontSize:"0.7rem",
+                      padding: "14px"
+                    }}
                   >
                     차트
                   </Button>
                   <Button
                     onClick={() => handleButtonClick("Order")}
                     color={activeInfo === "Order" ? "primary" : "default"}
+                    style={{
+                      fontSize:"0.7rem",
+                      padding: "14px"
+                    }}
                   >
                     호가
                   </Button>
                   <Button
                     onClick={() => handleButtonClick("Info")}
                     color={activeInfo === "Info" ? "primary" : "default"}
+                    style={{
+                      fontSize:"0.7rem",
+                      padding: "10px"
+                    }}
                   >
                     거래정보
                   </Button>
                 </ButtonGroup>
               </span>
-              {activeInfo === "Chart" || activeInfo === null}
+              {activeInfo === "Chart" && (<div className="chart-wrapper">
+                <img src="/img/negative_chart_img.png"/>
+                </div>)|| activeInfo === null}
               {activeInfo === "Order" &&
                 buyOrderBook.length !== undefined &&
                 sellOrderBook.length !== undefined && (
@@ -202,17 +251,28 @@ function Detail({
               )}
             </div>
             <div className="info-data">
-              <div>단위 가격 : {assets.currentUnitPrice}</div>
-              {/* 아래 가격 변화시켜야 함 */}
-              <div>평가 금액 : {assets.wholePrice}</div>
-              <div className="location">
-                <PlaceIcon />
-                <div>{assets.address}</div>
-              </div>
-              {isAuthenticated() && <div>내 잔고 : {stockCount}</div>}
-              {/* <div>주문 수량</div> */}
-              <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-                <FormHelperText id="outlined-weight-helper-text">
+            <div className="number-input-box" >
+            <Button
+                size="small"
+                variant="outlined"
+                style={{
+                  borderColor: "#E37622",
+                  color: "#E37622",
+                  height: "30px",
+                  width: "30px",
+                  marginBottom: "5px"
+                }}
+                onClick={() => {
+                  if (amount - 1 >= 0) {
+                    setAmount(amount - 1);
+                  }
+                }}
+              >
+                -
+              </Button>
+              <FormControl sx={{ m: 1, width: "100px" }} variant="outlined">
+                <FormHelperText id="outlined-weight-helper-text"
+                style={{fontSize: "0.5rem"}}>
                   주문 수량
                 </FormHelperText>
                 <OutlinedInput
@@ -224,6 +284,7 @@ function Detail({
                   }}
                   onChange={(e) => setAmount(e.target.value)}
                   value={amount}
+                  style={{height: "25px"}}
                 />
               </FormControl>
               <Button
@@ -232,6 +293,9 @@ function Detail({
                 style={{
                   borderColor: "#E37622",
                   color: "#E37622",
+                  height: "30px",
+                  width: "30px",
+                  marginBottom: "5px"
                 }}
                 onClick={() => {
                   setAmount(amount + 1);
@@ -239,25 +303,30 @@ function Detail({
               >
                 +
               </Button>
-
+              </div>
+              <hr />
+              <div className="number-input-box"> 
               <Button
                 size="small"
                 variant="outlined"
                 style={{
                   borderColor: "#E37622",
                   color: "#E37622",
+                  height: "30px",
+                  width: "30px",
+                  marginBottom: "5px"
                 }}
                 onClick={() => {
-                  if (amount - 1 >= 0) {
-                    setAmount(amount - 1);
+                  if (price - 500 >= 0) {
+                    setPrice(price - 500);
                   }
                 }}
               >
                 -
               </Button>
-              <br />
-              <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-                <FormHelperText id="outlined-weight-helper-text">
+              <FormControl sx={{ m: 1, width: "100px" }} variant="outlined">
+                <FormHelperText id="outlined-weight-helper-text" 
+                style={{fontSize: "0.5rem"}}>
                   주문 가격
                 </FormHelperText>
                 <OutlinedInput
@@ -269,6 +338,7 @@ function Detail({
                   }}
                   onChange={(e) => setPrice(e.target.value)}
                   value={price}
+                  style={{height: "25px"}}
                 />
               </FormControl>
               <Button
@@ -277,6 +347,9 @@ function Detail({
                 style={{
                   borderColor: "#E37622",
                   color: "#E37622",
+                  height: "30px",
+                  width: "30px",
+                  marginBottom: "5px"
                 }}
                 onClick={() => {
                   setPrice(price + 500);
@@ -284,34 +357,12 @@ function Detail({
               >
                 +
               </Button>
-
-              <Button
-                size="small"
-                variant="outlined"
-                style={{
-                  borderColor: "#E37622",
-                  color: "#E37622",
-                }}
-                onClick={() => {
-                  if (price - 500 >= 0) {
-                    setPrice(price - 500);
-                  }
-                }}
-              >
-                -
-              </Button>
-              <div className="location">
-                <ColorButton text={"매수"} size={10} f={() => {}} c={"red"} />
-
-                <div className="info-data">
-                  <ColorButton
-                    text={"매도"}
-                    size={10}
-                    f={() => {}}
-                    c={"blue"}
-                  />
-                </div>
               </div>
+              <hr/>
+              <div className="order-buttons">
+                <ColorButton text={"매수"} size={10} f={() => {}} c={"red"} />
+                <ColorButton text={"매도"} size={10} f={() => {}} c={"blue"} />
+            </div>
             </div>
           </div>
         </div>
