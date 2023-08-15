@@ -9,6 +9,7 @@ import "./Home.css";
 import BasicTable from "../components/BasicTable";
 import { Button, Sheet } from "@mui/joy";
 import InfoData from "../components/InfoData";
+import ViewPDF from "../components/individual/GovermentPDF";
 
 function createData(sell, orderPrice, buy) {
   return { sell: sell ? sell : 0, orderPrice, buy: buy ? buy : 0 };
@@ -91,7 +92,6 @@ function Detail({
   return (
     <div>
       <Nav />
-
       {loading ? (
         <h1>Loading</h1>
       ) : (
@@ -110,6 +110,7 @@ function Detail({
               hi
             </Grid>
           </div>
+          <div>{assets.name}</div>
           {/* <img
             src={assets.imageUrl}
             alt="assetId"
@@ -153,8 +154,6 @@ function Detail({
               {activeInfo === "Info" && <InfoData />}
             </div>
             <div className="info-data">
-              <h3>차트</h3>
-              <div>{assets.name}</div>
               <div>단위 가격 : {assets.currentUnitPrice}</div>
               {/* 아래 가격 변화시켜야 함 */}
               <div>평가 금액 : {assets.wholePrice}</div>

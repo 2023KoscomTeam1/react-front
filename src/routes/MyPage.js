@@ -60,14 +60,13 @@ function MyPage() {
         {/* <h5>My page</h5> */}
         {loading ? (
           <h1>Loading</h1>
-        ) : user.user_type == "COMPANY" ? (
+        ) : user.user_type === "COMPANY" ? (
           <div>
-            this user is enterprise
             <EPortfolio user_type={user.user_type} />
           </div>
         ) : (
           <div>
-            <IPortfolio user={user}/>
+            <IPortfolio user={user} />
           </div>
         )}
       </div>
