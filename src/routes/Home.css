@@ -152,9 +152,8 @@
 
 .trading-info {
   font-family: "contentFont";
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  padding: 10px;
 }
