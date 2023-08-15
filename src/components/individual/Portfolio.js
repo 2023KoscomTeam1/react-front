@@ -74,7 +74,7 @@ function IPortfolio({ user }) {
       <h2 className="color-title">부동산</h2>
       <div className="amount-label">
         <p className="key-label">총 평가액: </p>
-        <p className="value-label">
+        <p className="value-label" style={{fontWeight:"bold"}}>
 
           {totalAmount
             ? totalAmount
