@@ -22,6 +22,7 @@ const Nav = () => {
   };
   const isAuthenticated = useIsAuthenticated();
   useEffect(() => {
+    cookies.get("id");
     // console.log(cookies.get("id"));
     // console.log("this is _auth", cookies.cookies._auth);
     if (isAuthenticated()) {

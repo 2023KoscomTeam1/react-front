@@ -329,7 +329,7 @@ colorhr > hr {
 }
 
 .filler {
-  background-color: var(--koscom-color);
+  background-color: var(--koscom-color); opacity: 80%;;
   width: 100%;
   position: absolute;
   bottom: 0;
