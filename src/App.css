@@ -440,3 +440,35 @@ colorhr > hr {
   border: 1px solid #ccc;
   overflow: hidden;
 }
+
+.asset-form-container {
+  font-family: Arial, sans-serif;
+  /* background-color: #f4f4f4; */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-top: 20px;
+}
+
+.submit-button {
+  background-color: var(--koscom-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 3px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: var(--gray-color);
+}
+
+.right {
+  display: flex;
+  justify-content: right;
+}

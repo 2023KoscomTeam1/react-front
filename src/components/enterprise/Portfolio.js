@@ -4,6 +4,7 @@ import { Button, ButtonGroup, IconButton } from "@mui/joy";
 import Detail_info from "./Detail_info";
 import CheckAsset from "./CheckAsset";
 import AuditProgress from "./Audit";
+import AssetForm from "./AssetForm";
 import Home from "../../routes/Home";
 
 function EPortfolio() {
@@ -55,7 +56,7 @@ function EPortfolio() {
             size="sm"
             color={activeScreen === "done" ? "primary" : "default"}
           >
-            통계정보
+            자산등록
           </Button>
           </ButtonGroup>
           </div>
@@ -63,7 +64,7 @@ function EPortfolio() {
         {/* 초기 자산확인 화면 */}
         {activeScreen === "detail" && <Detail_info />} {/* 상세정보 화면 */}
         {activeScreen === "audit" && <AuditProgress />} {/* 심사 화면 */}
-        {activeScreen === "done" && <CheckAsset />} {/* 홈 화면 */}
+        {activeScreen === "done" && <AssetForm />} {/* 홈 화면 */}
         {/* 심사신청, 심사확인, 투자진행, 투자완료 화면도 유사하게 추가 */}
       </div>
     </div>
