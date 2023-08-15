@@ -61,7 +61,7 @@ function IPortfolio({ user }) {
       <div className="main-amount">
         <p className="left-label">주문 가능 금액: </p>
         <p className="right-label">
-          {" "}
+
           {user.balance
             .toString()
             .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}{" "}
@@ -75,7 +75,7 @@ function IPortfolio({ user }) {
       <div className="amount-label">
         <p className="key-label">총 평가액: </p>
         <p className="value-label">
-          {" "}
+
           {totalAmount
             ? totalAmount
                 .toString()
@@ -85,7 +85,11 @@ function IPortfolio({ user }) {
       </div>
       <div className="amount-label">
         <p className="key-label">총 수익: </p>
-        <p className="value-label">
+        <p className={`${
+                  total_profit > 0 ? "positive" : total_profit < 0 ? "negative" : "neutral"
+                }`}
+                style={{ fontSize:"0.9rem" }}>
+          {total_profit > 0 ? "▲" : total_profit < 0 ? "▼" : ""}
           {total_profit
             .toString()
             .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}{" "}
@@ -94,7 +98,8 @@ function IPortfolio({ user }) {
       </div>
       <div className="amount-label">
         <p className="key-label">투자 원금:</p>
-        <p className="value-label"> {original_amount} </p>
+        <p className="value-label"> {original_amount.toString()
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} </p>
       </div>
 
       <hr />
