@@ -9,6 +9,7 @@ import Issues from "./routes/Issues";
 import EPortfolio from "./components/enterprise/Portfolio";
 import BasicTable from "./components/BasicTable";
 import { RequireAuth } from "react-auth-kit";
+import Nav from "./components/Nav";
 function App() {
   return (
     <Routes>
@@ -27,7 +28,15 @@ function App() {
         }
       />
       <Route path="/issues" element={<Issues />} />
-      <Route path="/company/portfolio" element={<EPortfolio />} />
+      <Route
+        path="/company/portfolio"
+        element={
+          <div>
+            <Nav />
+            <EPortfolio />
+          </div>
+        }
+      />
       {/* <Route path="/basictable" element={<BasicTable />} /> */}
     </Routes>
   );

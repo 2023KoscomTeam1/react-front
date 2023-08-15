@@ -183,7 +183,10 @@ function List() {
             {activeInfo === "inProgress" &&
               ipo.map((i) => (
                 <div key={i}>
-                  <OwnIPO ipo_id={i} count={0} myPage={false} />
+                  <div className="color-under-bar">
+                    <br />
+                    <OwnIPO ipo_id={i} count={0} myPage={false} />
+                  </div>
                 </div>
               ))}
           </div>
