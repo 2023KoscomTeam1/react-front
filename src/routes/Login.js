@@ -1,14 +1,13 @@
 import ColorButton from "../components/Button";
 import "../../src/App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Nav from "../components/Nav";
-import { useAuthUser, useIsAuthenticated, useSignIn } from "react-auth-kit";
+import { useSignIn } from "react-auth-kit";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [id, setId] = useState();
   const [pwd, setPwd] = useState();
-
   const navigate = useNavigate();
   const signIn = useSignIn();
 
@@ -67,6 +66,7 @@ function Login() {
             className="text-input"
             onChange={pwdHandler}
             placeholder="비밀번호를 입력해 주세요."
+            type={"password"}
           />
           <br />
           <br />
