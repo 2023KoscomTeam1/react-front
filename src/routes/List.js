@@ -24,7 +24,7 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
     border: "1px solid #ced4da",
     fontSize: 10,
-    height: 10,
+    height: 5,
     padding: "10px 26px 10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
     // Use the system font instead of the default Roboto font.
@@ -76,13 +76,8 @@ function List() {
   const getIpo = useCallback(async () => {
     const res = await axios.get(`http://localhost:8080/ipo/list`);
     const data = res.data.ipo_assets;
-    let arr = [];
-    // data.map((d) => {
-    //   arr.push({ ipoId: d.ipoId, count: 0, myPage: false });
-    // });
+
     setIpo(data.map((d) => d.ipoId));
-    // });
-    // setIpo(arr);
   }, [ipo]);
 
   const place = "경기";
@@ -166,7 +161,7 @@ function List() {
 
             <br />
             <div className="place-combo">
-              <FormControl sx={{ width: 80, height: 30 }} size="small">
+              <FormControl sx={{ width: 80, height: 10 }} size="x-small">
                 {/* <InputLabel id="demo-customized-select-label">장소</InputLabel> */}
                 <Select
                   labelId="demo-customized-select-label"
