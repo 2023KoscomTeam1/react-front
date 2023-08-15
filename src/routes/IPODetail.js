@@ -7,6 +7,7 @@ import axios from "axios";
 import VerticalProgressBar from "../components/VerticalProgressBar";
 import { IoLocationSharp } from "react-icons/io5";
 import ColorButton from "../components/Button";
+import ViewPDF from "../components/individual/GovermentPDF";
 
 
 function IPODetail({
@@ -57,9 +58,13 @@ function IPODetail({
                 </div>
                 <hr/>
                 <div className="ipo-bottom-box">
+                    
                     <VerticalProgressBar percent={60} />
                     <div className="number-infos">
-
+                    <div className="right-span">
+                    <div className="gray-small-text">참고 자료: </div>
+                    < ViewPDF/>
+                    </div>
                     <div className="ipo-info-label">
                         <div className="ipo-price">공모가:</div> <div> {ipo.unitPrice}</div>
                     </div>
