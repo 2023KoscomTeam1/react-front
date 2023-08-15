@@ -301,7 +301,7 @@ colorhr > hr {
   height: 350px;
   margin-top: 10px;
   margin-bottom: -90px;
-  z-index: 1;
+  z-index: -2;
 
 }
 
@@ -389,7 +389,6 @@ colorhr > hr {
 
 .ipo-info-box {
   position: relative;
-  z-index: 2;
   margin-top: 0px;
   /* border: solid var(--koscom-color); */
   border-radius: 10px;
@@ -401,7 +400,6 @@ colorhr > hr {
   position: absolute;
   top: 60px;
   left: center;
-  z-index: 2;
   margin-left: 10px;
   font-weight: 600;
   color: white;
@@ -421,15 +419,22 @@ colorhr > hr {
   }
 }
 
-
 .place-combo {
   display: flex;
   justify-content: right;
+  height: 30px;
+  margin-bottom: 0px;
 }
 
+.right-span {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 30px;
+  margin-top: -10px;
+}
 
 /* --- */
-
 .image-with-background {
   display: inline-block;
   border: 1px solid #ccc;
