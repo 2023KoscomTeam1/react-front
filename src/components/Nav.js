@@ -50,10 +50,11 @@ const Nav = () => {
         {isAuthenticated() ? (
           <div className="login-button">
             {/* 우측 상단에 마이페이지 버튼과 로그인 버튼 */}
-            <div className="nav-module">
+
+            <div className="height-handler">
               {/* TODO:아래에 {user_id} 받도록 변경 */}
               <Link to={`/user/${user}`}>
-                <BsPersonCircle />
+                <BsPersonCircle color={"#e37622"} />
                 {/* <AccountCircleRounded color="action"/> */}
               </Link>
             </div>
@@ -77,10 +78,6 @@ const Nav = () => {
             </div>
           </div>
         )}
-
-        <div className="nav-module">
-          <FaBars />
-        </div>
       </div>
     </nav>
   );

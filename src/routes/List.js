@@ -14,6 +14,7 @@ import SearchBox from "../components/SearchBox";
 import { InputBase } from "@mui/material";
 import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
 import OwnIPO from "../components/OwnIPO";
+import { HourglassEmptyOutlined } from "@mui/icons-material";
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "label + &": {
     marginTop: theme.spacing(2),
@@ -119,9 +120,12 @@ function List() {
       <Nav />
       <div className="default-frame">
         {loading ? (
-          <div className="default-frame">
+          <div className="loading">
             <br />
-            <div>Loading</div>
+            <div className="in-loading">
+              <div>Loading</div>
+              <HourglassEmptyOutlined />
+            </div>
           </div>
         ) : (
           <div>

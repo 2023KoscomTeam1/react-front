@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Nav from "../components/Nav";
 import { IoLocationSharp } from "react-icons/io5";
-import { Image, Padding } from "@mui/icons-material";
+import { HourglassEmptyOutlined, Image, Padding } from "@mui/icons-material";
+import Alert from "@mui/material/Alert";
 import {
   ButtonGroup,
   Card,
@@ -133,10 +134,14 @@ function Detail({
   return (
     <div>
       <Nav />
+
       {loading ? (
-        <div className="default-frame">
+        <div className="loading">
           <br />
-          <div>Loading</div>
+          <div className="in-loading">
+            <div>Loading</div>
+            <HourglassEmptyOutlined />
+          </div>
         </div>
       ) : (
         <div className="default-frame">
@@ -160,6 +165,10 @@ function Detail({
             className="home-image"
             width="318"
           />
+          {/* <Alert severity="success">
+            This is a success alert — check it out!
+          </Alert> */}
+
           <div className="asset-top-info">
             <div className="asset-top-left">
               <div className="ipo-title">{assets.name}</div>
@@ -305,7 +314,7 @@ function Detail({
                 <FormControl sx={{ m: 1, width: "100px" }} variant="outlined">
                   <FormHelperText
                     id="outlined-weight-helper-text"
-                    style={{ fontSize: "0.5rem"}}
+                    style={{ fontSize: "0.5rem" }}
                   >
                     주문 수량
                   </FormHelperText>
@@ -315,11 +324,11 @@ function Detail({
                     aria-describedby="outlined-weight-helper-text"
                     inputProps={{
                       "aria-label": "weight",
-                      style: { textAlign: 'right', marginRight:"-10px" }
+                      style: { textAlign: "right", marginRight: "-10px" },
                     }}
                     onChange={(e) => setAmount(e.target.value)}
                     value={amount}
-                    style={{ height: "25px"}}
+                    style={{ height: "25px" }}
                   />
                 </FormControl>
                 <Button
@@ -372,7 +381,7 @@ function Detail({
                     aria-describedby="outlined-weight-helper-text"
                     inputProps={{
                       "aria-label": "weight",
-                      style: { textAlign: 'right', marginRight:"-10px" }
+                      style: { textAlign: "right", marginRight: "-10px" },
                     }}
                     onChange={(e) => setPrice(e.target.value)}
                     value={price}
@@ -398,8 +407,18 @@ function Detail({
               </div>
               <hr />
               <div className="order-buttons">
-                <ColorButton text={"매수"} size={10} f={() => {}} c={"red"} />
-                <ColorButton text={"매도"} size={10} f={() => {}} c={"blue"} />
+                <ColorButton
+                  text={"매수"}
+                  size={10}
+                  f={() => alert("매수 완료 되었습니다.")}
+                  c={"red"}
+                />
+                <ColorButton
+                  text={"매도"}
+                  size={10}
+                  f={() => alert("매도 완료 되었습니다.")}
+                  c={"blue"}
+                />
               </div>
             </div>
           </div>

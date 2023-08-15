@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Topic from "../components/Topic";
 import Nav from "../components/Nav";
 import axios from "axios";
+import { HourglassEmptyOutlined } from "@mui/icons-material";
 
 function Issues() {
   const [loading, setLoading] = useState(true);
@@ -37,9 +38,12 @@ function Issues() {
   return (
     <div>
       {loading ? (
-        <div className="default-frame">
+        <div className="loading">
           <br />
-          <div>Loading</div>
+          <div className="in-loading">
+            <div>Loading</div>
+            <HourglassEmptyOutlined />
+          </div>
         </div>
       ) : (
         <div>

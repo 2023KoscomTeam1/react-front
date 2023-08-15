@@ -5,6 +5,7 @@ import EPortfolio from "../components/enterprise/Portfolio";
 import IPortfolio from "../components/individual/Portfolio";
 import Nav from "../components/Nav";
 import axios from "axios";
+import { HourglassEmptyOutlined } from "@mui/icons-material";
 
 // TODO: 유저 타입에 따라 다르게 마이 페이지 보여줘야 함
 function MyPage() {
@@ -42,9 +43,12 @@ function MyPage() {
       <div className="default-frame">
         {/* <h5>My page</h5> */}
         {loading ? (
-          <div className="default-frame">
+          <div className="loading">
             <br />
-            <div>Loading</div>
+            <div className="in-loading">
+              <div>Loading</div>
+              <HourglassEmptyOutlined />
+            </div>
           </div>
         ) : user.user_type === "COMPANY" ? (
           <div>

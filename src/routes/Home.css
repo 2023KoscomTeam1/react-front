@@ -118,10 +118,10 @@
 
 .number-input-box {
   margin-top: 10px;
- display: flex;
- justify-content: space-around;
- align-items: flex-end;
- height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 40px;
 }
 
 .order-buttons {
@@ -136,7 +136,6 @@
   margin-top: 10px;
   margin-bottom: -90px;
   z-index: -2;
-
 }
 
 .chart-wrapper img {
@@ -156,4 +155,15 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+}
+
+.loading {
+  color: "#fa8125";
+  font-family: "contentFont";
+  text-align: center;
+}
+
+.in-loading {
+  display: flex;
+  justify-content: center;
 }

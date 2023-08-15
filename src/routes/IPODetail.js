@@ -8,6 +8,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import ColorButton from "../components/Button";
 import ViewPDF from "../components/individual/GovermentPDF";
 import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
+import { HourglassEmptyOutlined } from "@mui/icons-material";
 
 function IPODetail() {
   const { id } = useParams();
@@ -56,9 +57,12 @@ function IPODetail() {
       <div className="default-frame">
         {/* <h5>My page</h5> */}
         {loading ? (
-          <div className="default-frame">
+          <div className="loading">
             <br />
-            <div>Loading</div>
+            <div className="in-loading">
+              <div>Loading</div>
+              <HourglassEmptyOutlined />
+            </div>
           </div>
         ) : (
           <div className="ipo-frame">
