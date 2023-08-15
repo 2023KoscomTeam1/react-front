@@ -22,22 +22,12 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
     position: "relative",
     backgroundColor: theme.palette.background.paper,
     border: "1px solid #ced4da",
-    fontSize: 16,
+    fontSize: 10,
+    height: 10,
     padding: "10px 26px 10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
     // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
-      '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(","),
+    fontFamily: ["Josefin Sans", "sans-serif"],
     "&:focus": {
       borderRadius: 4,
       borderColor: "#80bdff",
@@ -154,15 +144,10 @@ function List() {
                 </Button>
               </ButtonGroup>
             </span>
-            {/* <div className="tab-buttons">
-              <button className="tab-title-btn" >전체 매물</button>
-              <button className="tab-title-btn" >인기 매물</button>
-              <button className="tab-title-btn" >나의 지역</button>
-              <button className="tab-title-btn" >공모 중</button>
-            </div> */}
+
             <br />
             <div className="place-combo">
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+              <FormControl sx={{ width: 80, height: 30 }} size="small">
                 {/* <InputLabel id="demo-customized-select-label">장소</InputLabel> */}
                 <Select
                   labelId="demo-customized-select-label"
