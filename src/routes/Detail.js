@@ -160,34 +160,45 @@ function Detail({
           /> */}
           <div className="detail-below">
             <div className="sheet-data">
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                textColor="primary"
-                // indicatorColor="secondary"
-                indicatorColor="primary"
-                aria-label="secondary tabs example"
-              >
-                <Tab value="one" label="차트" />
-                <Tab value="two" label="호가" />
-                <Tab value="three" label="거래 정보" />
-              </Tabs>
-
-              {value === "one" ? (
-                <div></div>
-              ) : value === "two" &&
+              <span className="button-container">
+                <ButtonGroup aria-label="outlined primary button group">
+                  <Button
+                    onClick={() => handleButtonClick("Chart")}
+                    color={
+                      activeInfo === "Chart" || activeInfo === null
+                        ? "primary"
+                        : "default"
+                    }
+                  >
+                    차트
+                  </Button>
+                  <Button
+                    onClick={() => handleButtonClick("Order")}
+                    color={activeInfo === "Order" ? "primary" : "default"}
+                  >
+                    호가
+                  </Button>
+                  <Button
+                    onClick={() => handleButtonClick("Info")}
+                    color={activeInfo === "Info" ? "primary" : "default"}
+                  >
+                    거래정보
+                  </Button>
+                </ButtonGroup>
+              </span>
+              {activeInfo === "Chart" || activeInfo === null}
+              {activeInfo === "Order" &&
                 buyOrderBook.length !== undefined &&
-                sellOrderBook.length !== undefined ? (
-                <BasicTable buyData={buyOrderBook} sellData={sellOrderBook} />
-              ) : value === "three" && assets ? (
+                sellOrderBook.length !== undefined && (
+                  <BasicTable buyData={buyOrderBook} sellData={sellOrderBook} />
+                )}
+              {activeInfo === "Info" && (
                 <InfoData
                   personalOwnCount={assets.personalOwnCount}
                   companyOwnCount={assets.companyOwnCount}
                   foreignOwnCount={assets.foreignOwnCount}
                   viewCount={assets.viewCount}
                 />
-              ) : (
-                <div></div>
               )}
             </div>
             <div className="info-data">
