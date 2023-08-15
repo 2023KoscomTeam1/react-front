@@ -41,10 +41,11 @@ function IPODetail({
         ) : 
         <div className="ipo-frame">
             <p></p>
-            <div className="color-title"> 공모주 상세 </div>
+            <div className="img-top-title"> 공모주 상세 </div>
             <div className="ipo-wrapper">
                 <img src={ipo.imageUrl} alt={ipo.name}/>
             </div>
+            <div className="img-cover"> </div>
             
             <div className="ipo-info-box">
                 <div className="ipo-top-box">

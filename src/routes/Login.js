@@ -70,7 +70,7 @@ function Login() {
           />
           <br />
           <br />
-          <ColorButton text={"로그인"} size={17} w={320} t={"submit"} />
+          <ColorButton text={"로그인"} size={17} w={370} t={"submit"} />
 
           <div className="one-line">
             <p className="gray-small-text"> 비밀번호 찾기 </p>

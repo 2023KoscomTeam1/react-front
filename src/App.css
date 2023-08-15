@@ -189,9 +189,10 @@ colorhr > hr {
 }
 
 .gray-small-text {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   margin-left: 7px;
   color: var(--gray-color);
+  margin-top: 2px;
 }
 
 .tab-buttons {
@@ -299,7 +300,9 @@ colorhr > hr {
   width: 350px;
   height: 350px;
   margin-top: 10px;
-  margin-bottom: 15px;
+  margin-bottom: -90px;
+  z-index: 1;
+
 }
 
 .ipo-wrapper img {
@@ -311,7 +314,6 @@ colorhr > hr {
   height: 100%;
   object-fit: cover;
   margin: auto;
-  border-radius: 5px;
 }
 
 .vertical-progress-bar {
@@ -386,11 +388,28 @@ colorhr > hr {
 }
 
 .ipo-info-box {
+  position: relative;
+  z-index: 2;
   margin-top: 0px;
   /* border: solid var(--koscom-color); */
   border-radius: 10px;
   padding: 5px;
-  /* background-color: #eceff2; */
+  background-color: #eceff2; opacity : 0.9;
+}
+
+.img-top-title {
+  position: absolute;
+  top: 60px;
+  left: center;
+  z-index: 2;
+  margin-left: 10px;
+  font-weight: 600;
+  color: white;
+}
+
+.img-cover {
+  position: fixed;
+  background-color: black; opacity : 0.5;
 }
 
 @keyframes App-logo-spin {
@@ -400,4 +419,19 @@ colorhr > hr {
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.place-combo {
+  display: flex;
+  justify-content: right;
+}
+
+
+/* --- */
+
+.image-with-background {
+  display: inline-block;
+  border: 1px solid #ccc;
+  overflow: hidden;
 }

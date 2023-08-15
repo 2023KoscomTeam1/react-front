@@ -2,9 +2,15 @@ import { useEffect, useState } from "react";
 import Assets from "../components/Assets";
 import Nav from "../components/Nav";
 import "../App.css";
-import { Button, ButtonGroup, IconButton } from '@mui/joy';
+import { Button, ButtonGroup } from '@mui/joy';
+import { styled } from '@mui/material/styles';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import axios from "axios";
 import SearchBox from "../components/SearchBox";
+
 
 function List() {
   const [activeInfo, setActiveInfo] = useState(null); // 현재 활성화된 화면을 상태로 관리
@@ -24,6 +30,10 @@ function List() {
     getAssets();
   }, []);
 
+  const place = "경기";
+  const handleChange = () => {
+    return;
+  }
 
   return (
     <div>
@@ -61,8 +71,33 @@ function List() {
               <button className="tab-title-btn" >나의 지역</button>
               <button className="tab-title-btn" >공모 중</button>
             </div> */}
-            <hr />
+            <div className="place-combo">
+            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <InputLabel id="demo-simple-select-label">Place</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={place}
+              label="Age"
+              onChange={handleChange}
+            >
+              <MenuItem value={"SEOUL"}>서울</MenuItem>
+              <MenuItem value={"KANGWON"}>강원도</MenuItem>
+              <MenuItem value={"KYUNGI"}>경기도</MenuItem>
+              <MenuItem value={"KYUNGSANG"}>경상도</MenuItem>
+              <MenuItem value={"KWANGJU"}>광주</MenuItem>
+              <MenuItem value={"DAEJEON"}>대전</MenuItem>
+              <MenuItem value={"DAEGU"}>대구</MenuItem>
+              <MenuItem value={"PUSAN"}>부산</MenuItem>
+              <MenuItem value={"SEJONG"}>세종</MenuItem>
+              <MenuItem value={"ULSAN"}>울산</MenuItem>
+              <MenuItem value={"INCHEON"}>인천</MenuItem>
+              <MenuItem value={"JEONLA"}>전라도</MenuItem>
+              <MenuItem value={"CHOONGCHUNG"}>충청도</MenuItem>
 
+            </Select>
+          </FormControl>
+          </div>
             {assets.map((asset) => (
               <div className="color-under-bar">
                 <Assets asset={asset} />
