@@ -10,7 +10,7 @@ function AuditProgress() {
             <h2 className="color-title"> 심사 진행 현황 </h2>
             <hr />
             <h3>카페 쿠버네티스</h3>
-            <p>서울특별시 강서구 강서로 33가길 4</p>
+            <p>충남 예산군 덕산면 덕산온천로 227</p>
             <hr />
 
             <div>
