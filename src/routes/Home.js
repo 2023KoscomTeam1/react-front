@@ -1,12 +1,32 @@
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import ColorButton from "../components/Button";
 import Nav from "../components/Nav";
+import { Cookies } from "react-cookie";
+import { useIsAuthenticated } from "react-auth-kit";
 
+
+const cookies = new Cookies();
 
 function Home() {
+  const [user, setUser] = useState();
+  const isAuthenticated = useIsAuthenticated();
+  useEffect(() => {
+    cookies.get("id");
+    // console.log(cookies.get("id"));
+    // console.log("this is _auth", cookies.cookies._auth);
+    if (isAuthenticated()) {
+      // Redirect to Dashboard
+      // console.log("logged in");
+      setUser(cookies.cookies._auth);
+    } else {
+      // Redirect to Login
+      console.log("logged out");
+    }
+  })
+
   return (
     <div>
       <Nav />
@@ -22,7 +42,7 @@ function Home() {
           <img src="/img/home/002.png" alt="home 3" className="home-image" />
           {/* "내 자산 등록하기" 버튼 */}
           <div className="register-button">
-            <Link to="/company/portfolio">
+            <Link to={`/user/${user}`}>
               <ColorButton text={"내 자산 확인하기"} size={5} />
             </Link>
           </div>
