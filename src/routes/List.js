@@ -115,7 +115,10 @@ function List() {
       <Nav />
       <div className="default-frame">
         {loading ? (
-          <h1>Loading</h1>
+          <div className="default-frame">
+            <br />
+            <div>Loading</div>
+          </div>
         ) : (
           <div>
             <SearchBox text="투자 상품 검색" w={300}></SearchBox>

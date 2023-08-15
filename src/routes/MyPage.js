@@ -42,7 +42,10 @@ function MyPage() {
       <div className="default-frame">
         {/* <h5>My page</h5> */}
         {loading ? (
-          <h1>Loading</h1>
+          <div className="default-frame">
+            <br />
+            <div>Loading</div>
+          </div>
         ) : user.user_type === "COMPANY" ? (
           <div>
             <EPortfolio user_type={user.user_type} />

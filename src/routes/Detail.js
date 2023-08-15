@@ -6,6 +6,8 @@ import { IoLocationSharp } from "react-icons/io5";
 import { Image, Padding } from "@mui/icons-material";
 import {
   ButtonGroup,
+  Card,
+  CardMedia,
   Container,
   FormControl,
   FormHelperText,
@@ -138,7 +140,10 @@ function Detail({
     <div>
       <Nav />
       {loading ? (
-        <h1>Loading</h1>
+        <div className="default-frame">
+          <br />
+          <div>Loading</div>
+        </div>
       ) : (
         <div className="default-frame">
           {/* <div> */}

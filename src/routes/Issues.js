@@ -37,7 +37,10 @@ function Issues() {
   return (
     <div>
       {loading ? (
-        <h1>Loading</h1>
+        <div className="default-frame">
+          <br />
+          <div>Loading</div>
+        </div>
       ) : (
         <div>
           <Nav />
