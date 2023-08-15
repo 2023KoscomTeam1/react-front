@@ -318,12 +318,14 @@ colorhr > hr {
 
 .vertical-progress-bar {
   width: 100px;
-  height: 250px;
+  height: 300px;
   border: 1px solid var(--koscom-color);
   position: relative;
   display: inline-block;
   margin-right: 15px;
+  margin-left: 5px;
   border-radius: 10px;
+  background-color: white; opacity: 90%;
 }
 
 .filler {
@@ -367,6 +369,7 @@ colorhr > hr {
 }
 
 .ipo-bottom-box {
+  margin-top: 50x;
   display: flex;
 }
 
@@ -375,6 +378,27 @@ colorhr > hr {
   justify-content: space-between;
   margin-bottom: 15px;
   font-family: "titleFont";
+  font-size: 0.9rem;
+}
+
+.ipo-info-small {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 15px;
+  font-family: "titleFont";
+  font-size: 0.7rem;
+}
+
+.ipo-price-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-family: "titleFont";
+  border-bottom: solid 1px;
+  border-color: var(--koscom-color);
+  padding-right: 3px;
+  margin-top: 3px;
+  padding-bottom: 7px;
 }
 
 .number-infos {
@@ -389,7 +413,7 @@ colorhr > hr {
 
 .ipo-info-box {
   position: relative;
-  margin-top: 0px;
+  margin-top: 20px;
   /* border: solid var(--koscom-color); */
   border-radius: 10px;
   padding: 5px;

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import React from "react";
 import "../App.css";
 import Nav from "../components/Nav";
 import axios from "axios";
@@ -8,6 +9,13 @@ import { IoLocationSharp } from "react-icons/io5";
 import ColorButton from "../components/Button";
 import ViewPDF from "../components/individual/GovermentPDF";
 import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
+import { Button } from "@mui/joy";
+import {
+    FormControl,
+    FormHelperText,
+    InputAdornment,
+    OutlinedInput,
+  } from "@mui/material";
 import { HourglassEmptyOutlined } from "@mui/icons-material";
 
 function IPODetail() {
@@ -16,6 +24,7 @@ function IPODetail() {
   const [ipo, setIPO] = useState({});
   const [viewer, setViewer] = useState();
   const [myIpoCount, setMyIpoCount] = useState(0);
+  const [amount, setAmount] = useState(0);
   const auth = useAuthUser();
   const isAuthenticated = useIsAuthenticated();
 
@@ -49,7 +58,7 @@ function IPODetail() {
 
   const dueDate = ipo.dueDate ? ipo.dueDate.split("T")[0] : ipo.dueDate;
 
-  const count = 0; /* 값 받아오기 */
+  const percent = Math.round((ipo.currentAmount / ipo.targetAmount) * 10000) / 100;
 
   return (
     <div>
@@ -88,36 +97,94 @@ function IPODetail() {
               </div>
               <hr />
               <div className="ipo-bottom-box">
-                <VerticalProgressBar percent={60} />
+                <VerticalProgressBar percent={percent} />
                 <div className="number-infos">
                   <div className="right-span">
-                    <div className="gray-small-text">참고 자료: </div>
+                    <div className="gray-small-text" style={{fontWeight:"bold"}}>참고 자료: </div>
                     <ViewPDF />
                   </div>
-                  <div className="ipo-info-label">
+                  <div className="ipo-price-label">
                     <div className="ipo-price">공모가:</div>{" "}
-                    <div> {ipo.unitPrice}</div>
+                    <div style={{color:"#e37622", fontWeight:"bold"}}> {(ipo.unitPrice).toString()
+                  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</div>
                   </div>
                   <div className="ipo-info-label">
-                    <div>목표 공모 수량:</div> <div> {ipo.targetAmount}</div>
+                    <div>목표 공모 수량:</div> <div style={{ fontWeight:"bold"}}> {(ipo.targetAmount).toString()
+                  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</div>
                   </div>
                   <div className="ipo-info-label">
-                    <div>현재 수량:</div> <div> {ipo.currentAmount}</div>
+                    <div>현재 수량:</div> <div style={{fontWeight:"bold"}}> {(ipo.currentAmount).toString()
+                  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</div>
                   </div>
+                  <hr/>
                   {isAuthenticated() && (
-                    <div className="ipo-info-label">
+                  <div className="ipo-info-label" style={{fontSize:"0.8rem"}}>
                       <div>내 공모 수량:</div> <div> {myIpoCount}</div>
-                    </div>
+                  </div>
                   )}
-                  <div className="ipo-info-label">
-                    <div>총 증거금:</div> <div> {}</div>
+                  <div className="ipo-info-small">
+                    <div>총 증거금 : </div> <div> {(myIpoCount*ipo.unitPrice).toString()
+                  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</div>
                   </div>
-                  <div className="ipo-info-label">
-                    <div>신규 공모 수량: </div>
-                    <div className="number-input"></div>
-                  </div>
-                  <div className="ipo-info-label">
-                    <div>신청 금액:</div> <div> {}</div>
+                <div className="number-input-box" style={{marginTop:"30px"}}>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  style={{
+                    borderColor: "#E37622",
+                    color: "#E37622",
+                    height: "30px",
+                    width: "30px",
+                    marginBottom: "5px",
+                  }}
+                  onClick={() => {
+                    if (amount - 1 >= 0) {
+                      setAmount(amount - 1);
+                    }
+                  }}
+                >
+                  -
+                </Button>
+                <FormControl sx={{ m: 1, width: "100px" }} variant="outlined">
+                  <FormHelperText
+                    id="outlined-weight-helper-text"
+                    style={{ fontSize: "0.8rem"}}
+                  >
+                    주문 수량
+                  </FormHelperText>
+                  <OutlinedInput
+                    id="outlined-adornment-weight"
+                    endAdornment={<InputAdornment position="end" />}
+                    aria-describedby="outlined-weight-helper-text"
+                    inputProps={{
+                      "aria-label": "weight",
+                      style: { textAlign: 'right', marginRight:"-10px" }
+                    }}
+                    onChange={(e) => setAmount(e.target.value)}
+                    value={amount}
+                    style={{ height: "25px", width:"130px", marginLeft:"-15px"}}
+                  />
+                </FormControl>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  style={{
+                    borderColor: "#E37622",
+                    color: "#E37622",
+                    height: "30px",
+                    width: "30px",
+                    marginBottom: "5px",
+                  }}
+                  onClick={() => {
+                    setAmount(amount + 1);
+                  }}
+                >
+                  +
+                </Button>
+              </div>
+                  <div className="ipo-info-small">
+                    <div>신청 금액 : </div> <div> {(ipo.currentAmount*amount).toString()
+                  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</div>
                   </div>
                   <div className="button-span">
                     <ColorButton size={20} w={120} text={"공모 신청"} />

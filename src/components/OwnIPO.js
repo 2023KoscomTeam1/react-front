@@ -51,12 +51,11 @@ function OwnIPO({ ipo_id, count, myPage }) {
             <div className="basic-text">마감일: {dueDate} </div>
           </div>
 
-          {myPage && (
             <div className="price-span">
               <div className="amount-large">{target_amount}</div>
-              <div className="neutral">내 청약수량: {new_count}</div>
+              {myPage && (<div className="neutral">내 청약수량: {new_count}</div>)}
             </div>
-          )}
+
         </div>
         <div className="location-label">
           <IoLocationSharp />

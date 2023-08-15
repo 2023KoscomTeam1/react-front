@@ -22,11 +22,11 @@ const Nav = () => {
   };
   const isAuthenticated = useIsAuthenticated();
   useEffect(() => {
-    console.log(cookies.get("id"));
-    console.log("this is _auth", cookies.cookies._auth);
+    // console.log(cookies.get("id"));
+    // console.log("this is _auth", cookies.cookies._auth);
     if (isAuthenticated()) {
       // Redirect to Dashboard
-      console.log("logged in");
+      // console.log("logged in");
       setUser(cookies.cookies._auth);
     } else {
       // Redirect to Login
