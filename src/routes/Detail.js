@@ -36,7 +36,7 @@ function Detail({
   const [sellOrderBook, setSellOrderBook] = useState({});
   const [orderRange, setOrderRange] = useState({});
   const [activeInfo, setActiveInfo] = useState(null); // 현재 활성화된 화면을 상태로 관리
-  const [viewer, setViewer] = useState("");
+  const [viewer, setViewer] = useState();
   const auth = useAuthUser();
   const isAuthenticated = useIsAuthenticated();
   const handleButtonClick = (screen) => {
@@ -171,7 +171,7 @@ function Detail({
                 <PlaceIcon />
                 <div>{assets.address}</div>
               </div>
-              <div>내 잔고 : {stockCount}</div>
+              {isAuthenticated() && <div>내 잔고 : {stockCount}</div>}
               <div>주문 수량</div>
               <div>주문 가격</div>
               <div>매수</div>
