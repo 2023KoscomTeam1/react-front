@@ -10,16 +10,14 @@ import ColorButton from "../components/Button";
 
 
 function IPODetail({
-    ipo_id,
 }) {
-  ipo_id = 1;
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [ipo, setIPO] = useState({});
-
+  console.log(id);
   const jsonFetcher = async () => {
-    const res = await axios.get(`http://localhost:8080/ipo/${ipo_id}`);
-    console.log(res.data.ipo_asset);
+    const res = await axios.get(`http://localhost:8080/ipo/${id}`);
+    console.log('serserr', res.data.ipo_asset);
     setIPO(res.data.ipo_asset);
     setLoading(false);
   };
