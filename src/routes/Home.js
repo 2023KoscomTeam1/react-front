@@ -34,7 +34,7 @@ function Home() {
           {/* 배너 컨테이너 */}
           <div className="banner-container">
 
-            <span className="banner-title">진행중인 공모</span>
+            <span className="banner-title">우리 동네 소식</span>
             <div className="banner-wrapper">
               {/* 여러 개의 배너 이미지를 반복하여 표시 */}
               <img src="/img/banner1.png" alt="Banner 1" className="banner-image" />

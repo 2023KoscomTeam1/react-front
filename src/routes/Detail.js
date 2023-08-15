@@ -311,7 +311,7 @@ function Detail({
                 <FormControl sx={{ m: 1, width: "100px" }} variant="outlined">
                   <FormHelperText
                     id="outlined-weight-helper-text"
-                    style={{ fontSize: "0.5rem" }}
+                    style={{ fontSize: "0.5rem"}}
                   >
                     주문 수량
                   </FormHelperText>
@@ -321,10 +321,11 @@ function Detail({
                     aria-describedby="outlined-weight-helper-text"
                     inputProps={{
                       "aria-label": "weight",
+                      style: { textAlign: 'right', marginRight:"-10px" }
                     }}
                     onChange={(e) => setAmount(e.target.value)}
                     value={amount}
-                    style={{ height: "25px" }}
+                    style={{ height: "25px"}}
                   />
                 </FormControl>
                 <Button
@@ -377,6 +378,7 @@ function Detail({
                     aria-describedby="outlined-weight-helper-text"
                     inputProps={{
                       "aria-label": "weight",
+                      style: { textAlign: 'right', marginRight:"-10px" }
                     }}
                     onChange={(e) => setPrice(e.target.value)}
                     value={price}
