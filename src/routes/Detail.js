@@ -59,17 +59,18 @@ function Detail({
   const handleButtonClick = (screen) => {
     setActiveInfo(screen); // 버튼 클릭에 따라 화면 변경
   };
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#E37622",
-      },
-      secondary: {
-        main: "#f44336",
-      },
-    },
-  });
-  const color = red[500];
+
+  // const theme = createTheme({
+  //   palette: {
+  //     primary: {
+  //       main: "#E37622",
+  //     },
+  //     secondary: {
+  //       main: "#f44336",
+  //     },
+  //   },
+  // });
+  // const color = red[500];
   const getAssets = useCallback(async () => {
     try {
       const { data } = await axios.get(`http://localhost:8080/assets/${id}`);
@@ -104,14 +105,11 @@ function Detail({
     setBuyOrderBook(sellOrder);
     setFetching(true);
   }, []);
-  const [value, setValue] = useState("one");
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
   useEffect(() => {
     isAuthenticated() && setViewer(Object.values(auth())[0]);
   });
+
   useEffect(() => {
     getAssets();
   }, []);
@@ -128,10 +126,6 @@ function Detail({
     getsellOrderBook();
     console.log(assets);
   }, []);
-
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
 
   const change = assets.endPrice - assets.currentUnitPrice;
   const change_percent = (change / assets.endPrice) * 100;
