@@ -6,6 +6,7 @@ import { FaBars } from "react-icons/fa";
 import { BsPersonCircle } from "react-icons/bs";
 import { useIsAuthenticated, useSignOut, withAuthUser } from "react-auth-kit";
 import { Cookies } from "react-cookie";
+import { AccountCircleRounded } from "@mui/icons-material";
 
 const cookies = new Cookies();
 const Nav = () => {
@@ -53,6 +54,7 @@ const Nav = () => {
               {/* TODO:아래에 {user_id} 받도록 변경 */}
               <Link to={`/user/${user}`}>
                 <BsPersonCircle />
+                {/* <AccountCircleRounded color="action"/> */}
               </Link>
             </div>
 

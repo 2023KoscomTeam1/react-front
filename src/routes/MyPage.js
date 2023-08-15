@@ -14,27 +14,10 @@ function MyPage() {
   // const [assets, setAssets] = useState({});
   // const [ipos, setIPOs] = useState({});
   // const [place, setPlace] = useState({});
-  const getUsers = async () => {
-    // 아래의 데이터는 id에 맞는 데이터 fetch했다는 가정 하의 데이터임
-    const json = {
-      user_id: id,
-      name: "홍길동",
-      password: "1",
-      user_place: "충청도",
-      user_assets: { asset_id: "1", count: 1, average_price: 13.4 },
-      balance: 432153,
-      user_type: "PERSONAL",
-    };
-
-    setUser(json);
-    console.log("this is user", user);
-    console.log(id);
-    setLoading(false);
-  };
 
   const jsonFetcher = async () => {
     const res = await axios.get(`http://localhost:8080/user/${id}`);
-    console.log(res.data);
+    // console.log(res.data);
     setUser(res.data);
     // const res_assets = await axios.get(`http://localhost:8080/user/${id}/assets`);
     // console.log(res_assets.data);

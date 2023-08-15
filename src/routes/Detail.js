@@ -26,7 +26,6 @@ function Detail({
   end_price,
   user_id,
 }) {
-  const rows = [];
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [fetching, setFetching] = useState(true);
@@ -64,7 +63,7 @@ function Detail({
   }, [viewer, id]);
 
   const getbuyOrderBook = useCallback(async () => {
-    const { data } = await axios.get(`http://localhost:3000/order/${id}/sell`);
+    const { data } = await axios.get(`http://localhost:8080/order/${id}/sell`);
     const buyOrder = Object.entries(data.order_book);
     buyOrder.sort((a, b) => b[0] - a[0]);
     setSellOrderBook(buyOrder);
@@ -72,7 +71,7 @@ function Detail({
   }, []);
 
   const getsellOrderBook = useCallback(async () => {
-    const { data } = await axios.get(`http://localhost:3000/order/${id}/buy`);
+    const { data } = await axios.get(`http://localhost:8080/order/${id}/buy`);
     const sellOrder = Object.entries(data.order_book);
     sellOrder.sort((a, b) => b[0] - a[0]);
     setBuyOrderBook(sellOrder);
@@ -80,7 +79,6 @@ function Detail({
   }, []);
   useEffect(() => {
     isAuthenticated() && setViewer(Object.values(auth())[0]);
-    // console.log("this is detail auth", user);
   });
   useEffect(() => {
     getAssets();
@@ -160,7 +158,7 @@ function Detail({
                 buyOrderBook.length !== undefined &&
                 sellOrderBook.length !== undefined && (
                   <BasicTable buyData={buyOrderBook} sellData={sellOrderBook} />
-                )}{" "}
+                )}
               {activeInfo === "Info" && <InfoData />}
             </div>
             <div className="info-data">
