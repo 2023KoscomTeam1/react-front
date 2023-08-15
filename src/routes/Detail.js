@@ -282,8 +282,8 @@ function Detail({
                   color: "#E37622",
                 }}
                 onClick={() => {
-                  if (amount - 500 >= 0) {
-                    setAmount(amount - 500);
+                  if (price - 500 >= 0) {
+                    setPrice(price - 500);
                   }
                 }}
               >
