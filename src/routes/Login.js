@@ -2,30 +2,22 @@ import ColorButton from "../components/Button";
 import "../../src/App.css";
 import { useEffect, useState } from "react";
 import Nav from "../components/Nav";
+import { useAuthUser, useIsAuthenticated, useSignIn } from "react-auth-kit";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [id, setId] = useState();
   const [pwd, setPwd] = useState();
 
-  /* item fetch 시 이하 코드 사용 */
-  // const requestOptions = async () => {
-  //   const json = await (
-  //     await fetch("http://localhost:8080/user/root/place")
-  //   ).json();
-  //   console.log(json);
-  // };
-  // useEffect(() => {
-  //   requestOptions();
-  // }, []);
+  const navigate = useNavigate();
+  const signIn = useSignIn();
 
   const idHandler = (e) => {
     setId(e.target.value);
-    console.log(id);
   };
 
   const pwdHandler = (e) => {
     setPwd(e.target.value);
-    console.log(pwd);
   };
 
   const submitHandler = async (e) => {
@@ -36,16 +28,29 @@ function Login() {
     formData.append("loginId", id);
     formData.append("password", pwd);
 
-    const res = await fetch("/api/login", {
-      method: "POST",
-      body: formData,
-    }).catch((err) => console.log(err));
-    console.log("this is res", res.ok);
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        body: formData,
+      });
+      console.log(res.headers);
+      if (res.ok !== false) {
+        // auth user
+        signIn({
+          token: id,
+          expiresIn: 3600,
+          tokenType: "Bearer",
+          authState: { id },
+        });
+        navigate("/");
+      }
+    } catch (e) {}
   };
 
   return (
     <div>
       <Nav />
+
       <div className="default-frame">
         <form className="login" onSubmit={submitHandler}>
           <div className="gray-center-title">
