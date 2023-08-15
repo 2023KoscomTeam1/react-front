@@ -12,10 +12,18 @@ function EPortfolio() {
   const handleButtonClick = (screen) => {
     setActiveScreen(screen); // 버튼 클릭에 따라 화면 변경
   };
-
+  const buttonGroupStyle = {
+    display: "flex",
+    justifyContent: "center", // 가로 중앙 정렬
+    alignItems: "center",
+    width: "100%",
+    
+    
+  };
   return (
     <div className="default-frame">
       <div className="right-content">
+        <div style={buttonGroupStyle}>
         <ButtonGroup aria-label="outlined primary button group">
           <Button
             onClick={() => handleButtonClick("check")}
@@ -40,16 +48,17 @@ function EPortfolio() {
             size="sm"
             color={activeScreen === "audit" ? "primary" : "default"}
           >
-            심사
+            심사정보
           </Button>
           <Button
             onClick={() => handleButtonClick("done")}
             size="sm"
             color={activeScreen === "done" ? "primary" : "default"}
           >
-            통계
+            통계정보
           </Button>
-        </ButtonGroup>
+          </ButtonGroup>
+          </div>
         {(activeScreen === "check" || activeScreen === null) && <CheckAsset />}{" "}
         {/* 초기 자산확인 화면 */}
         {activeScreen === "detail" && <Detail_info />} {/* 상세정보 화면 */}
