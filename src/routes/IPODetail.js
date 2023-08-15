@@ -187,7 +187,15 @@ function IPODetail() {
                   .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}</div>
                   </div>
                   <div className="button-span">
-                    <ColorButton size={20} w={120} text={"공모 신청"} />
+                    <ColorButton
+                      size={20}
+                      w={120}
+                      text={"공모 신청"}
+                      f={() => {
+                        alert("공모 신청이 접수 되었습니다.");
+                        setMyIpoCount(myIpoCount + 1);
+                      }}
+                    />
                   </div>
                 </div>
               </div>

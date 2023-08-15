@@ -237,40 +237,43 @@ function Detail({
                 <ButtonGroup aria-label="outlined primary button group">
                   <Button
                     onClick={() => handleButtonClick("Chart")}
-                    color={
-                      activeInfo === "Chart" || activeInfo === null
-                        ? "primary"
-                        : "default"
-                    }
                     style={{
                       fontSize: "0.7rem",
-                      padding: "14px",
+                      padding: "0px 14px 0px 14px",
+                      backgroundColor:
+                        activeInfo === "Chart" ? "gray" : "white",
+                      color: activeInfo === "Chart" ? "white" : "black",
                     }}
                   >
                     차트
                   </Button>
                   <Button
                     onClick={() => handleButtonClick("Order")}
-                    color={activeInfo === "Order" ? "primary" : "default"}
                     style={{
                       fontSize: "0.7rem",
-                      padding: "14px",
+                      padding: "0px 14px 0px 14px",
+                      backgroundColor:
+                        activeInfo === "Order" ? "gray" : "white",
+                      color: activeInfo === "Order" ? "white" : "black",
                     }}
                   >
                     호가
                   </Button>
                   <Button
                     onClick={() => handleButtonClick("Info")}
-                    color={activeInfo === "Info" ? "primary" : "default"}
                     style={{
                       fontSize: "0.7rem",
-                      padding: "10px",
+
+                      padding: "0px 14px 0px 14px",
+                      backgroundColor: activeInfo === "Info" ? "gray" : "white",
+                      color: activeInfo === "Info" ? "white" : "black",
                     }}
                   >
                     거래정보
                   </Button>
                 </ButtonGroup>
               </span>
+
               {(activeInfo === "Chart" && (
                 <div className="chart-wrapper">
                   <img src="/img/negative_chart_img.png" />
@@ -410,13 +413,13 @@ function Detail({
                 <ColorButton
                   text={"매수"}
                   size={10}
-                  f={() => alert("매수 완료 되었습니다.")}
+                  f={() => alert("매수 접수 되었습니다.")}
                   c={"red"}
                 />
                 <ColorButton
                   text={"매도"}
                   size={10}
-                  f={() => alert("매도 완료 되었습니다.")}
+                  f={() => alert("매도 접수 되었습니다.")}
                   c={"blue"}
                 />
               </div>
