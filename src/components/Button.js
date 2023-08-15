@@ -1,6 +1,6 @@
 import { Button, styled } from "@mui/material";
 
-function ColorButton({ text, size, w, t }) {
+function ColorButton({ text, size, w, t, f }) {
   const CustomButton = styled(Button)({
     boxShadow: "none",
     textTransform: "none",
@@ -13,7 +13,7 @@ function ColorButton({ text, size, w, t }) {
     borderColor: "white",
     borderRadius: 8,
     opacity: 0.8,
-    
+
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -39,7 +39,7 @@ function ColorButton({ text, size, w, t }) {
   });
   return (
     <div>
-      <CustomButton varient="contained" type={t}>
+      <CustomButton varient="contained" type={t} onClick={f}>
         {text}
       </CustomButton>
     </div>
