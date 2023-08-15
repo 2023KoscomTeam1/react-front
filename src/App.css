@@ -421,10 +421,11 @@ colorhr > hr {
   }
 }
 
-
 .place-combo {
   display: flex;
   justify-content: right;
+  height: 30px;
+  margin-bottom: 0px;
 }
 
 
