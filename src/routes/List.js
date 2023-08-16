@@ -180,8 +180,11 @@ function List() {
               viewer &&
               home &&
               home.map((h) => (
+                <div>
+                {/* <div>My 지역: {home}</div> */}
                 <div className="color-under-bar" key={h.assetId}>
                   <Assets asset={h} />
+                </div>
                 </div>
               ))}
             {activeInfo === "inProgress" &&
